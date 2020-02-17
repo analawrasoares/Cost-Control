@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <meta charset="utf-8">
+        <title>Cadastro De Usuário</title>
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
+        <script type="text/javascript" src="js/Notificacao.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    </head>
+    <style type="text/css">
+        body{
+            font-family: roboto;
+        }
+    </style>
+    <body>
+        <div class="container ">
+            <legend class="mt-4">Registro De Usuários</legend>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="input-nome">Nome:</label>
+                            <input required="required" type="text" id="input-nome" class="form-control" placeholder="João Carlos">
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="input-nome">CPF:</label>
+                            <input required="required" type="text"  id="input-cpf" class="form-control" placeholder="000.000.000-00">
+                        </div>
+                </div>
+
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="input-email">Email:</label>
+                            <input required="required" type="email"  id="input-email" class="form-control" placeholder="seuemail@exemplo.com">
+                        </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="text-white">Salvar</label><br>
+                    <button style="border-radius: 10px;" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="text-white">Novo</label><br>
+                    <button style="border-radius: 10px;" class="btn btn-outline-primary btn-block  font-weight-bold text-uppercase" type="submit">Novo <span class="fas fa-plus"></span></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
