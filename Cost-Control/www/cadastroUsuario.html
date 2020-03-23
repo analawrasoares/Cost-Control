@@ -63,4 +63,35 @@
             </div>
         </div>
     </body>
+    <!-- Enviar email -->   
+    
+    <script>
+        
+        function EnviarEmail() {
+            
+        var Fullmail = [];
+        var mail = document.getElementById("input-email").value;
+            
+            
+        Fullmail.push(mail);
+            
+          async function runFullmailInSequence(Fullmail) {
+        for (let Fullmail of Fullmail) {
+          console.log(await Fullmail());
+        }
+      }
+            
+        Email.send({
+        Host: "smtp.gmail.com",
+        Username : "costcontrolproject@gmail.com",
+        Password : "trabalhodojean123",
+        To : Fullmail,
+        From : "costcontrolproject@gmail.com",
+        Subject : "Login e Senha",
+        Body : "testeeee",
+        }).then(
+            message => alert("mail sent successfully")
+        );
+    }
+        </script>
 </html>
