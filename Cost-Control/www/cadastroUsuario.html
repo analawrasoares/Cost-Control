@@ -13,6 +13,7 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="js/Notificacao.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/animate.css">
@@ -21,6 +22,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
     </head>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            
+                Email.send({
+                Host: "smtp.gmail.com",
+                Username : "costcontrolproject@gmail.com",
+                Password : "trabalhodojean123",
+                To : "zagamendes@hotmail.com",
+                From : "costcontrolproject@gmail.com",
+                Subject : "Login e Senha",
+                Body : "testeeee",
+                }).then(
+                    message => alert("mail sent successfully")
+                ).catch(erro=>console.log(erro));
+            
+
+        })
+    </script>
     <style type="text/css">
         body{
             font-family: roboto;
