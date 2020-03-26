@@ -13,6 +13,8 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="js/Notificacao.js"></script>
+        <script src="js/smtp.js"></script>
+        <script type="text/javascript" src="js/mail.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/animate.css">
@@ -21,6 +23,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
     </head>
+
     <style type="text/css">
         body{
             font-family: roboto;
@@ -53,7 +56,7 @@
 
                 <div class="col-sm-2">
                     <label class="text-white">Salvar</label><br>
-                    <button style="border-radius: 10px;" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+                    <button id="salvar" style="border-radius: 10px;" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
                 </div>
 
                 <div class="col-sm-2">
@@ -63,35 +66,5 @@
             </div>
         </div>
     </body>
-    <!-- Enviar email -->   
     
-    <script>
-        
-        function EnviarEmail() {
-            
-        var Fullmail = [];
-        var mail = document.getElementById("input-email").value;
-            
-            
-        Fullmail.push(mail);
-            
-          async function runFullmailInSequence(Fullmail) {
-        for (let Fullmail of Fullmail) {
-          console.log(await Fullmail());
-        }
-      }
-            
-        Email.send({
-        Host: "smtp.gmail.com",
-        Username : "costcontrolproject@gmail.com",
-        Password : "trabalhodojean123",
-        To : Fullmail,
-        From : "costcontrolproject@gmail.com",
-        Subject : "Login e Senha",
-        Body : "testeeee",
-        }).then(
-            message => alert("mail sent successfully")
-        );
-    }
-        </script>
 </html>
