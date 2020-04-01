@@ -1,0 +1,25 @@
+.wrapper{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    
+}
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.icones{
+    text-align: center;
+    color: black;
+    font-family: verdana;
+    padding: 10px;
+    
+}
+.container{
+ width: 100%;
+ height: auto;
+ padding-top: 25%;
+ background-color: white;  
+    
+}
