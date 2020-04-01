@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <title>Cadastro De Usuário</title>
+                
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta charset="utf-8">
+
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
+        <script type="text/javascript" src="../js/Notificacao.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/animate.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    </head>
+
+    <style type="text/css">
+        body{
+            font-family: roboto;
+        }
+        .btn{
+            border-radius: 10px;
+        }
+    </style>
+    <body>
+        <div class="container ">
+            <legend class="mt-4">Registrar Valores</legend>
+            <form id="form-user">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <form>
+                            <div class="form-group">
+                                <label for="input-nome">Mês:</label>
+                                <input required="required" type="text" id="input-nome" class="form-control" placeholder="João Carlos">
+                            </div>
+                    </div>
+                    <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="input-nome">Ano:</label>
+                                <input required="required" type="text"  id="input-cpf" class="form-control" placeholder="000.000.000-00">
+                            </div>
+                    </div>
+               </div>
+                    <div class="row">
+                    <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="input-email">Email:</label>
+                                <input required="required" type="email"  id="input-email" class="form-control" placeholder="seuemail@exemplo.com">
+                            </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="text-white">Salvar</label><br>
+                        <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+                        <input type="hidden" name="" id="input-id" value="">
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="text-white">Novo</label><br>
+                        <button class="btn btn-outline-primary btn-block  font-weight-bold text-uppercase" type="submit">Novo <span class="fas fa-plus"></span></button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <table id="tabela-users" class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Email:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+        </div>
+    </body>
+    
+</html>
