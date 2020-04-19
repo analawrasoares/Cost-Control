@@ -1,12 +1,97 @@
 $(document).ready(function(){
 
+
+    //EVENTOS CADASTRO DE ENTRADA
+
+    //PEGANDO O MES E ANO ATUAL PARA O SELECT
+    const mes = new Date().getMonth();
+    const ano = new Date().getFullYear();
+    //DEFININDO O MES SELECIONADO 
+    $("option[value="+mes+"]").attr("selected","selected");
+    //DEFININDO O ANO SELECIONADO
+    $("option[value="+ano+"]").attr("selected","selected");
+    
+    //MÁSCARA PARA O VALOR DA ENTRADA
+    $('#input-valor').mask('000.000.000,00', {reverse: true});
+    
+    $("#form-entrada").submit((e)=>{
+        e.preventDefault();
+        if(!$("#btn-entrada").hasClass("btn-entrada")&&!$("#btn-saida").hasClass("btn-saida")){
+            $("span").removeAttr("hidden");
+            return false;
+        }
+        let tipo="";
+        const id =  $("#input-id").val();
+        const mes = $("#select-mes").val();
+        const ano = $("#select-ano").val();
+        let valor = $("#input-valor").val();
+        const descricao = $("#input-descricao").val();
+        valor = parseFloat(valor.replace(".","").replace(",","."));
+        $("#btn-entrada").hasClass("btn-entrada")?tipo="entrada":tipo="saida";
+
+        const obj={
+            mes:mes,
+            ano:ano,
+            tipo:tipo,
+            valor:valor,
+            descricao:descricao,
+            
+
+
+        }
+        
+        const ref = firebase.database().ref(`registros/1/${ano}/${mes}`);
+        obj.id = ref.push().key;
+        ref.push().set(obj)
+        .then(()=>{
+            Notificacao.sucesso("Registro salvo com sucesso")
+            limpaCampos();
+
+        })
+        .catch(erro=>Notificacao.erro(erro));
+        
+    });
+
+
+    $("#btn-entrada").click(()=>{
+        $("#btn-entrada").addClass("btn-entrada");
+
+        if($("#btn-saida").hasClass("btn-saida")){
+            $("#btn-saida").removeClass("btn-saida");
+        }
+    });
+
+    $("#btn-saida").click(()=>{
+        $("#btn-saida").addClass("btn-saida");
+        
+        if($("#btn-entrada").hasClass("btn-entrada")){
+            $("#btn-entrada").removeClass("btn-entrada");
+
+        }
+    });
+
+
+    firebase.database().ref("registros/1/"+ano+"/"+mes).on("child_added",snapshot=>{
+
+        $("#tabela-entradas tbody").append(criaLinhaEntradas(snapshot));
+            
+    });
+
+    //FUNÇÃO QUE EXCLUI O USUÁRIO DO SISTEMA
+    $("#tabela-users").on("click","#btn-excluir",function(){
+        excluiuser($(this).val());
+        
+    });
+
+
+    //EVENTOS PAGINA CADASTRO USER 
+        
     var url = location.search;
     if(url!=""){
         let id = url.slice(4);
         console.log(id);
         trazDadosUser(id);
     }
-
     //ADM CLICOU EM SALVAR
     $("#form-user").submit((evento)=>{
 
@@ -50,22 +135,16 @@ $(document).ready(function(){
 
         }
 
-        
-
-        
-        
-        
-
     });
 
     //FUNÇÃO QUE EXCLUI O USUÁRIO DO SISTEMA
-    $("table").on("click","#btn-excluir",function(){
+    $("#tabela-users").on("click","#btn-excluir",function(){
         excluiuser($(this).val());
         
     });
     //TODA VEZ QUE UM NOVO USUÁRIO É ADICIONADO AO BANCO ESSA FUNÇÃO ADICIONA O MESMO NA TABELA
     firebase.database().ref("usuarios").on("child_added",novoUser=>{
-        $("tbody").append(criaLinha(novoUser));
+        $("#tabela-users:tbody").append(criaLinha(novoUser));
     });
 
     //TODA VEZ QUE UM USUÁRIO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
@@ -75,16 +154,25 @@ $(document).ready(function(){
 
 
 });
-
+function criaLinhaEntradas(registro){
+    const linha =`<tr id=${registro.key}>
+                    <td>${registro.val().descricao}</td>
+                    <td>${registro.val().tipo}</td>
+                    <td>${registro.val().valor}</td>
+                    <td><a href="cadastroUsuario.html?id=${registro.key}" class='btn btn-primary text-uppercase font-weight-bold'>Editar <span class='fas fa-edit'></span></a></td>
+                    <td><button id='btn-excluir' value='${registro.key}' class='btn btn-danger text-uppercase font-weight-bold'>Excluir <span class='fas fa-trash'></span</button></td>
+                </tr>`;
+    return linha;
+}
 function criaLinha(user){
 
-    linha = `<tr id=${user.key}>
-                <td>${user.val().nome}</td>
-                <td>${user.val().cpf}</td>
-                <td>${user.val().email}</td>
-                <td><a href="cadastroUsuario.html?id=${user.key}" class='btn btn-primary text-uppercase font-weight-bold'>Editar <span class='fas fa-edit'></span></a></td>
-                <td><button id='btn-excluir' value='${user.key}' class='btn btn-danger text-uppercase font-weight-bold'>Excluir <span class='fas fa-trash'></span</button></td>
-            </tr>`;
+    const linha = `<tr id=${user.key}>
+                    <td>${user.val().nome}</td>
+                    <td>${user.val().cpf}</td>
+                    <td>${user.val().email}</td>
+                    <td><a href="cadastroUsuario.html?id=${user.key}" class='btn btn-primary text-uppercase font-weight-bold'>Editar <span class='fas fa-edit'></span></a></td>
+                    <td><button id='btn-excluir' value='${user.key}' class='btn btn-danger text-uppercase font-weight-bold'>Excluir <span class='fas fa-trash'></span</button></td>
+                </tr>`;
 
     return linha;
 }
@@ -152,6 +240,15 @@ function excluiuser(id){
     })
 }
 
+function excluiRegistro(id){
+    firebase.database().ref("registro/1/"+id).remove()
+    .then(()=>Notificacao.sucesso("Usuário excluido com sucesso!"))
+    .catch(erro=>{
+        console.log(erro);
+        Notificacao.erro(erro);
+    })
+}
+
 function trazDadosUser(id){
 
     firebase.database().ref("usuarios/"+id).once("value",user=>{
@@ -161,4 +258,9 @@ function trazDadosUser(id){
         $("#input-email").val(user.val().email);
         $("#input-id").val(user.key);
     })
+}
+function limpaCampos(){
+    $("#input-valor").val("");
+
+    $("#input-descricao").val("");
 }

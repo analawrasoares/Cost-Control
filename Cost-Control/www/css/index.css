@@ -1,13 +1,4 @@
-.wrapper{
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-    
-}
-.img-responsive {
-  width: 100%;
-  height: auto;
-}
+
 
 .icones{
     text-align: center;
@@ -16,10 +7,13 @@
     padding: 10px;
     
 }
-.container{
- width: 100%;
- height: auto;
- padding-top: 25%;
- background-color: white;  
-    
+.btn-saida{
+	background-color: #dc3545;
+	transition: all .2s;
+	color: white;
+}
+.btn-entrada{
+	background-color:#28a745;
+	transition: all .2s;
+	color: white;
 }

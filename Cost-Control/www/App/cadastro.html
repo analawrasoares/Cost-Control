@@ -6,14 +6,19 @@
                 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="viewport" content="initial-scale=.75, width=device-width, viewport-fit=cover">
         <meta charset="utf-8">
+
+        <script type="text/javascript" src="../js/firebase/firebase-app.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-database.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-init.js"></script>
 
         <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="../js/Notificacao.js"></script>
-
+        <script type="text/javascript" src="../js/index.js"></script>
+        <script type="text/javascript" src="../js/jquery.mask.js"></script>
 
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/animate.css">
@@ -36,83 +41,101 @@
     </style>
     <body>
        
-    <div class="mobile-container">
-            <nav class="navbar navbar-dark bg-primary">
-                <a style="text-transform: initial; font-size: 0.8rem;" class="navbar-brand" value="voltar" href="../App/menu.html">Voltar</a>
-            </nav>
-       <div id="wrapper">
+    
         <div class="container">
+
             <legend class="sm-2">Registrar Valores</legend>
+            
+
+            <form id="form-entrada">
                 <div class="row">
-                    <div class="col-sm-2" icones>
-                                <label for="input-mes">Mês:</label>
-                                <select class="form-control" id="sel1">
-                                    <option>Janeiro</option>
-                                    <option>Fevereiro</option>
-                                    <option>Março</option>
-                                    <option>Abril</option>
-                                    <option>Maio</option>
-                                    <option>Junho</option>
-                                    <option>Julho</option>
-                                    <option>Agosto</option>
-                                    <option>Setembro</option>
-                                    <option>Outubro</option>
-                                    <option>Novembro</option>
-                                    <option>Dezembro</option>
-                                  </select>
-                            </div>
+                    <div class="col-12">
+                        <label for="input-mes">Mês:</label>
+                        <select required="" class="form-control" id="select-mes">
+                            <option data-mes="janeiro" value="0">Janeiro</option>
+                            <option data-mes="fevereiro" value="1">Fevereiro</option>
+                            <option data-mes="marco" value="2">Março</option>
+                            <option data-mes="abril" value="3">Abril</option>
+                            <option data-mes="maio" value="4">Maio</option>
+                            <option data-mes="junho" value="5">Junho</option>
+                            <option data-mes="julho" value="6">Julho</option>
+                            <option data-mes="agosto" value="7">Agosto</option>
+                            <option data-mes="setembro" value="8">Setembro</option>
+                            <option data-mes="outubro" value="9">Outubro</option>
+                            <option data-mes="novembro" value="10">Novembro</option>
+                            <option data-mes="dezembro" value="11">Dezembro</option>
+                        </select>
+                    </div>
                     
-                    <div class="col-sm-2" icones>
-                                <label for="input-ano">Ano:</label>
-                                <select class="form-control" id="sel1">
-                                    <option>2018</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
+                    <div class="col-12">
+                        <label for="input-ano">Ano:</label>
+                        <select class="form-control" id="select-ano">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            
                                     
-                                  </select>
+                        </select>
                             
                     </div>
             
-                    <div class="col-sm-2">
+                    <div class="col-12">
                             
-                                <label for="input-email">Valor:</label>
-                                <input required="required" type="number"  id="input-valor" class="form-control" placeholder="300,00">
+                        <label for="input-email">Valor:</label>
+                        <input required="required" type="tel"  id="input-valor" class="form-control" placeholder="300,00">
                             
                     </div>
                </div>
-                    <div class="row">
 
-                     <div class="col-sm-6">
+                <div class="row">
+
+                    <div class="col-12">
                       
                         <label for="descricao">Descrição</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" required="" placeholder="Conta de luz" id="input-descricao" rows="3"></textarea>
                       
+                    </div>
                 </div>
+
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <button type="button" id="btn-entrada" class="btn btn-outline-success font-weight-bold text-uppercase btn-block">Entrada <span class="fas fa-money-bill-alt"></span></button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" id="btn-saida" class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">Saída <span class="fas fa-money-bill-alt"></span></button>
+                    </div>
+                    <div class="col-12">
+                        <span class="text-danger" hidden="">Por favor selecione se o registro é uma entrada ou saída!</span>
+                    </div>
+
                 </div>
-                   <div class="row">
-                    <div class="col-sm-4">
-                        <br>
+
+                <div class="row mt-2">
+                    <div class="col-12">
                         <button id="btn-salvar" class="btn btn-outline-info btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
                         <input type="hidden" name="" id="input-id" value="">
                     </div>
 
-           </div>
+                </div>
+            </form>
  
 
             <div class="row">
-                <table id="tabela-users" class="table table-hover table-striped">
+                <table id="tabela-entradas" class="table table-hover table-striped">
                     <thead>
                         <tr>
+                            <th>Descrição</th>
                             <th>Tipo</th>
                             <th>Valor</th>
-                            
+                            <th>Editar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
                         
                     </tbody>
                 </table>
-        </div>
+            </div>
     </div>
   </div>  
 </div>    
