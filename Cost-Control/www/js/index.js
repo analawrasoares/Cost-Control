@@ -1,11 +1,14 @@
 $(document).ready(function(){
 
 
+    
+
+
     //EVENTOS CADASTRO DE ENTRADA
 
     //PEGANDO O MES E ANO ATUAL PARA O SELECT
-    const mes = new Date().getMonth();
-    const ano = new Date().getFullYear();
+    let mes = new Date().getMonth();
+    let ano = new Date().getFullYear();
     //DEFININDO O MES SELECIONADO 
     $("option[value="+mes+"]").attr("selected","selected");
     //DEFININDO O ANO SELECIONADO
@@ -13,7 +16,24 @@ $(document).ready(function(){
     
     //MÁSCARA PARA O VALOR DA ENTRADA
     $('#input-valor').mask('000.000.000,00', {reverse: true});
+
+    buscaEntradas(mes,ano);
+
     
+    $("#select-mes").change(()=>{
+        mes = $("#select-mes").val();
+        $("#tabela-entradas tbody").empty();
+        buscaEntradas(mes,ano);
+
+    });
+
+    $("#select-ano").change(()=>{
+        ano = $("#select-ano").val();
+        $("#tabela-entradas tbody").empty();
+        buscaEntradas(mes,ano);
+
+    });
+
     $("#form-entrada").submit((e)=>{
         e.preventDefault();
         if(!$("#btn-entrada").hasClass("btn-entrada")&&!$("#btn-saida").hasClass("btn-saida")){
@@ -39,6 +59,7 @@ $(document).ready(function(){
 
 
         }
+
         
         const ref = firebase.database().ref(`registros/1/${ano}/${mes}`);
         obj.id = ref.push().key;
@@ -71,11 +92,7 @@ $(document).ready(function(){
     });
 
 
-    firebase.database().ref("registros/1/"+ano+"/"+mes).on("child_added",snapshot=>{
-
-        $("#tabela-entradas tbody").append(criaLinhaEntradas(snapshot));
-            
-    });
+    
 
     //FUNÇÃO QUE EXCLUI O USUÁRIO DO SISTEMA
     $("#tabela-users").on("click","#btn-excluir",function(){
@@ -154,13 +171,27 @@ $(document).ready(function(){
 
 
 });
+
+function buscaEntradas(mes,ano){
+    firebase.database().ref("registros/1/"+ano+"/"+mes).on("child_added",snapshot=>{
+
+        $("#tabela-entradas tbody").append(criaLinhaEntradas(snapshot));
+            
+    });
+}
 function criaLinhaEntradas(registro){
+    let tipo="";
+    if(registro.val().tipo=="entrada"){
+        tipo="btn btn-success"
+    }else{
+        tipo="btn btn-danger";
+    }
     const linha =`<tr id=${registro.key}>
                     <td>${registro.val().descricao}</td>
-                    <td>${registro.val().tipo}</td>
+                    <td><button class='font-weight-bold ${tipo}'>${registro.val().tipo}</button></td>
                     <td>${registro.val().valor}</td>
-                    <td><a href="cadastroUsuario.html?id=${registro.key}" class='btn btn-primary text-uppercase font-weight-bold'>Editar <span class='fas fa-edit'></span></a></td>
-                    <td><button id='btn-excluir' value='${registro.key}' class='btn btn-danger text-uppercase font-weight-bold'>Excluir <span class='fas fa-trash'></span</button></td>
+                    <td><a href='cadastroUsuario.html?id=${registro.key}' class='btn btn-primary text-uppercase font-weight-bold '>Editar <span class='fas fa-edit'></span></a></td>
+                    <td><button id='btn-excluir' value='${registro.key}' class='btn btn-danger text-uppercase font-weight-bold '>Excluir <span class='fas fa-trash'></span</button></td>
                 </tr>`;
     return linha;
 }
