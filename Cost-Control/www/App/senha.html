@@ -42,29 +42,64 @@
             </nav>
        <div id="wrapper">
         <div class="container">
-            <legend class="sm-2">Alterar a senha</legend>
-                    <div class="row">
+            <legend class="sm-2">HISTÓRICO</legend>
+                <div class="row">
+                    <div class="col-sm-2" icones>
+                                <label for="input-mes">Escolha um mês</label>
+                                <select class="form-control" id="sel1">
+                                    <option>Janeiro</option>
+                                    <option>Fevereiro</option>
+                                    <option>Março</option>
+                                    <option>Abril</option>
+                                    <option>Maio</option>
+                                    <option>Junho</option>
+                                    <option>Julho</option>
+                                    <option>Agosto</option>
+                                    <option>Setembro</option>
+                                    <option>Outubro</option>
+                                    <option>Novembro</option>
+                                    <option>Dezembro</option>
+                                  </select>
+                            </div>
+                    
+                    <div class="col-sm-2" icones>
+                                <label for="input-ano">Escolha um ano:</label>
+                                <select class="form-control" id="sel1">
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    
+                                  </select>
+                            
+                    </div>
+            
+    
+               </div>
 
-                     <div class="col-sm-6">
-                      
-                        <label for="input-email">Nova Senha:</label>
-                                <input required="required" type="number"  id="input-valor" class="form-control" placeholder="">
-                         <label for="input-email">Repita a nova Senha:</label>
-                                <input required="required" type="number"  id="input-valor" class="form-control" placeholder="">
-                      
-                </div>
-                </div>
                    <div class="row">
                     <div class="col-sm-4">
                         <br>
-                        <button id="btn-salvar" class="btn btn-outline-info btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+                        <button id="btn-salvar" class="btn btn-outline-info btn-block font-weight-bold text-uppercase" type="submit">Visualizar</button>
                         <input type="hidden" name="" id="input-id" value="">
                     </div>
 
            </div>
  
 
-
+            <div class="row">
+                <table id="tabela-users" class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+        </div>
     </div>
   </div>  
 </div>    
