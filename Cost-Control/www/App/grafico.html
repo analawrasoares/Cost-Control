@@ -43,9 +43,11 @@
 	const tonsE=["#006400","#3CB371","#32CD32","#2E8B57"];
 	const tonsS=["#800000","#8B0000","#FA8072","#FF6347"];
 	dadosAux.forEach(snapshot=>{
+
 		obj= {};
 		obj.entrada=snapshot.val().descricao;
 		obj.valor= snapshot.val().valor;
+		
 		if(snapshot.val().tipo=="entrada"){
 			obj.color= am4core.color(tonsE[Math.floor(Math.random()*tonsE.length)])
 		}else{
