@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta charset="utf-8">
+
+        <script type="text/javascript" src="../js/firebase/firebase-app.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-database.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-init.js"></script>
+
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
+        <script type="text/javascript" src="../js/Notificacao.js"></script>
+        <!-- <script type="text/javascript" src="../js/index.js"></script> -->
+        <script type="text/javascript" src="../js/jquery.mask.js"></script>
+        <script src="../js/core.js"></script>
+		<script src="../js/charts.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../css/animate.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="chartdiv" >
+		</div>
+	</div>
+</body>
+	
+
+
+<script>
+	async function teste(){
+		// Create chart instance
+	let dados =[];
+	const chart = am4core.create("chartdiv", am4charts.PieChart);
+	const dadosAux = await firebase.database().ref("registros/1/2020/3").once("value");
+	const tonsE=["#006400","#3CB371","#32CD32","#2E8B57"];
+	const tonsS=["#800000","#8B0000","#FA8072","#FF6347"];
+	dadosAux.forEach(snapshot=>{
+
+		obj= {};
+		obj.entrada=snapshot.val().descricao;
+		obj.valor= snapshot.val().valor;
+		
+		if(snapshot.val().tipo=="entrada"){
+			obj.color= am4core.color(tonsE[Math.floor(Math.random()*tonsE.length)])
+		}else{
+			obj.color= am4core.color(tonsS[Math.floor(Math.random()*tonsS.length)])
+		}
+		dados.push(obj);
+
+	});
+	chart.data=dados;
+	chart.innerRadius = am4core.percent(35);
+
+
+	// Add and configure Series
+	var sliceSettings = chart.series.push(new am4charts.PieSeries());
+	sliceSettings.dataFields.value = "valor";
+	sliceSettings.dataFields.category = "entrada";
+	sliceSettings.slices.template.propertyFields.fill = "color";
+	sliceSettings.slices.template.stroke = am4core.color("#fff");
+	sliceSettings.slices.template.strokeWidth = 2;
+	sliceSettings.slices.template.strokeOpacity = 1;
+
+	}
+	teste()
+
+</script>
+</html>
