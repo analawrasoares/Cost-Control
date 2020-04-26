@@ -17,12 +17,13 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="js/Notificacao.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery.mask.js"></script>
+        <script type="text/javascript" src="js/funcoesCadastroUser.js"></script>
         <script src="js/smtp.js"></script>
 
 
 
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/animate.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
@@ -50,32 +51,36 @@
                         <form>
                             <div class="form-group">
                                 <label for="input-nome">Nome:</label>
-                                <input required="required" type="text" id="input-nome" class="form-control" placeholder="João Carlos">
+                                <input required="required" type="text" id="input-nome" class="form-control" placeholder="Ex:João Carlos">
                             </div>
                     </div>
                     <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="input-nome">CPF:</label>
-                                <input required="required" type="text"  id="input-cpf" class="form-control" placeholder="000.000.000-00">
+                                <input required="required" type="text"  id="input-cpf" class="form-control" placeholder="Ex:000.000.000-00">
                             </div>
                     </div>
 
                     <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="input-email">Email:</label>
-                                <input required="required" type="email"  id="input-email" class="form-control" placeholder="seuemail@exemplo.com">
+                                <input required="required" type="email"  id="input-email" class="form-control" placeholder="Ex:seuemail@exemplo.com">
                             </div>
                     </div>
 
                     <div class="col-sm-2">
-                        <label class="text-white">Salvar</label><br>
-                        <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+                        <label class="text-white">Salvar</label>
+                        <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" style="padding: 6px;">Salvar <span class="fas fa-save"></span></button>
                         <input type="hidden" name="" id="input-id" value="">
                     </div>
 
                     <div class="col-sm-2">
-                        <label class="text-white">Novo</label><br>
-                        <button class="btn btn-outline-primary btn-block  font-weight-bold text-uppercase" type="submit">Novo <span class="fas fa-plus"></span></button>
+                        <label class="text-white">Novo</label>
+                        <a href="cadastrousuario.html">
+                            <button type="button" class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
+                                Novo <span class="fas fa-plus"></span>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </form>

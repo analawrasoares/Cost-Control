@@ -66,6 +66,7 @@ $(document).ready(function(){
     $("#select-mes").change(()=>{
         //PEGO O MÊS SELECIONADO PELO USUÁRIO
         mes = $("#select-mes").val();
+        ano = $("#select-ano").val();
         //REMOVO A TABELA REFERENTE AO MÊS ANTIGO
         $("#tabela-entradas tbody").empty();
 
@@ -151,9 +152,6 @@ $(document).ready(function(){
             //CAMINHO QUE O REGISTRO SERÁ ATUALIZADO    
             const ref = firebase.database().ref(`registros/1/${ano}/${mes}/${obj.id}`);
 
-            ref.on("child_changed",snapshot=>{
-                
-            })
 
             ref.update(obj)
             .then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
@@ -223,10 +221,10 @@ function criaLinhaEntradas(registro){
 
     const linha =`<tr id=${registro.key}>
                     <td>${registro.val().descricao}</td>
-                    <td><button class='font-weight-bold ${tipo}'>${registro.val().tipo}</button></td>
+                    <td><button class='font-weight-bold disabled ${tipo}'>${registro.val().tipo}</button></td>
                     <td>${registro.val().valor}</td>
-                    <td><a href='cadastro.html?id=${registro.key}&ano=${registro.val().ano}&mes=${registro.val().mes}' class='btn btn-primary text-uppercase font-weight-bold '>Editar <span class='fas fa-edit'></span></a></td>
-                    <td><button data-mes='${registro.val().mes}' data-ano='${registro.val().ano}' id='btn-excluir' value='${registro.key}' class='btn btn-danger btn-excluir text-uppercase font-weight-bold '>Excluir <span class='fas fa-trash'></span</button></td>
+                    <td><a href='cadastro.html?id=${registro.key}&ano=${registro.val().ano}&mes=${registro.val().mes}' class='btn btn-primary text-uppercase font-weight-bold '><span class='fas fa-edit'></span></a></td>
+                    <td><button data-mes='${registro.val().mes}' data-ano='${registro.val().ano}' id='btn-excluir' value='${registro.key}' class='btn btn-danger btn-excluir text-uppercase font-weight-bold '><span class='fas fa-trash'></span</button></td>
                 </tr>`;
     return linha;
 }

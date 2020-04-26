@@ -1,8 +1,5 @@
-//FUNÇÃO QUE EXCLUI O USUÁRIO DO SISTEMA
-    $("#tabela-users").on("click","#btn-excluir",function(){
-        excluiuser($(this).val());
-        
-    });
+$(document).ready(function(){
+
 
 
     //EVENTOS PAGINA CADASTRO USER 
@@ -10,9 +7,11 @@
     var url = location.search;
     if(url!=""){
         let id = url.slice(4);
-        console.log(id);
         trazDadosUser(id);
     }
+
+    $("#input-cpf").mask("000.000.000-000");
+
     //ADM CLICOU EM SALVAR
     $("#form-user").submit((evento)=>{
 
@@ -68,7 +67,7 @@
     });
     //TODA VEZ QUE UM NOVO USUÁRIO É ADICIONADO AO BANCO ESSA FUNÇÃO ADICIONA O MESMO NA TABELA
     firebase.database().ref("usuarios").on("child_added",novoUser=>{
-        $("#tabela-users:tbody").append(criaLinha(novoUser));
+        $("#tabela-users tbody").append(criaLinha(novoUser));
     });
 
     //TODA VEZ QUE UM USUÁRIO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
@@ -76,7 +75,7 @@
         $("#"+user.key).fadeOut(()=>$("#"+user.key).remove());
     });
 
-
+});
 
 
 
