@@ -1,0 +1,4 @@
+isLogged();
+$(document).ready(function() {
+	
+});

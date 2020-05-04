@@ -11,66 +11,60 @@
         <script type="text/javascript" src="../js/firebase/firebase-database.js"></script>
         <script type="text/javascript" src="../js/firebase/firebase-init.js"></script>
 
-        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.js"></script>
         <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="../js/Notificacao.js"></script>
-        <!-- <script type="text/javascript" src="../js/index.js"></script> -->
         <script type="text/javascript" src="../js/jquery.mask.js"></script>
-        <script src="../js/core.js"></script>
-		<script src="../js/charts.js"></script>
+        <script type="text/javascript" src="../js/minhasFuncoes.js"></script>
+        
 
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/animate.css">
         <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <link rel="stylesheet" type="text/css" href="../css/fa/css/all.css">
 </head>
 
 <body>
 	<div class="container">
-		<div class="chartdiv" >
-		</div>
+		
+		<div id="anos">
+		    
+  		</div>
+
+  		<img src="../img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
+		
 	</div>
 </body>
 	
+<script type="text/javascript">
+	
+	firebase.database().ref("registros/1/").on("child_added",ano=>{
+		let meses="";
+		let cards=`<div class='card'>
+						
+						<div class='card-header text-center' href='#${ano.key}' data-toggle='collapse'>
+							<a class='card-link font-weight-bold dropdown-toggle' href='#${ano.key}' data-toggle='collapse'>
+								${ano.key}	
+							</a>
+						</div>
+						<div id='${ano.key}' class='collapse' data-parent='#anos'>
+							<div class='card-body'>
+								<ul class='list-group'>`;
 
-
-<script>
-	async function teste(){
-		// Create chart instance
-	let dados =[];
-	const chart = am4core.create("chartdiv", am4charts.PieChart);
-	const dadosAux = await firebase.database().ref("registros/1/2020/3").once("value");
-	const tonsE=["#006400","#3CB371","#32CD32","#2E8B57"];
-	const tonsS=["#800000","#8B0000","#FA8072","#FF6347"];
-	dadosAux.forEach(snapshot=>{
-
-		obj= {};
-		obj.entrada=snapshot.val().descricao;
-		obj.valor= snapshot.val().valor;
-		
-		if(snapshot.val().tipo=="entrada"){
-			obj.color= am4core.color(tonsE[Math.floor(Math.random()*tonsE.length)])
-		}else{
-			obj.color= am4core.color(tonsS[Math.floor(Math.random()*tonsS.length)])
-		}
-		dados.push(obj);
-
+									ano.forEach(mes=>{
+										meses+="<li class='list-group-item mb-2'><span style='color:#007bff;' class='font-weight-bold'>"+retornaMes(mes.key)+":</span><div class='d-inline-block float-right'><a class='btn btn-outline-info font-weight-bold'  href='graficoPizza.html?ano="+ano.key+"&mes="+mes.key+"'>Pizza <span class='fas fa-chart-pie'></span></a> <a class='btn btn-outline-warning'  href='graficoBarra.html?ano="+ano.key+"'>Barras <span class='fas fa-chart-bar'></span></a></div></li>"; 
+									});
+							cards+=meses;
+							cards+=`</ul>
+							</div>
+						</div>
+					</div>`;
+		escondeLoading();
+		$("#anos").addClass("animated fadeIn");					
+		$("#anos").append(cards);
 	});
-	chart.data=dados;
-	chart.innerRadius = am4core.percent(35);
-
-
-	// Add and configure Series
-	var sliceSettings = chart.series.push(new am4charts.PieSeries());
-	sliceSettings.dataFields.value = "valor";
-	sliceSettings.dataFields.category = "entrada";
-	sliceSettings.slices.template.propertyFields.fill = "color";
-	sliceSettings.slices.template.stroke = am4core.color("#fff");
-	sliceSettings.slices.template.strokeWidth = 2;
-	sliceSettings.slices.template.strokeOpacity = 1;
-
-	}
-	teste()
-
 </script>
+
+
 </html>

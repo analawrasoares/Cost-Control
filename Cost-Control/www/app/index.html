@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Menu</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+
+        <script type="text/jscript" src="../js/jquery.js"></script>        
+        <script type="text/javascript" src="../js/bootstrap.js"></script>
+        <script type="text/javascript" src="../js/minhasFuncoes.js"></script>
+        <script type="text/javascript" src="../js/eventos-index.js"></script>
+         
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+         
+        <style type="text/css">
+            .container{
+                background-image: linear-gradient(to top, #f1e767,#f1da36);
+                
+            }
+
+        </style>
+        
+    </head>
+    <body>
+        <div class="container pt-5 pb-5">
+      
+            <div class="row">
+                <div class="col-5 mx-auto icones">
+                    <a id="cad" href="cadastro.html">
+                        <img src="../img/cadastro.png" class="img-fluid" >
+                        <p>Cadastro</p>
+                    </a>
+                </div>
+                
+                <div class="col-5 mx-auto icones">
+                    <a href="historico.html">
+                        <img src="../img/historico.png" class="img-fluid" >
+                        <p>Histórico</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-5 mx-auto icones">
+                    <a href="grafico.html">
+                        <img src="../img/relatorio.png" class="img-fluid">
+                        <p>Gráficos</p>
+                    </a>
+                </div>
+                
+                <div class="col-5 mx-auto icones">
+                    <a href="senha.html">
+                        <img src="../img/senha.png" class="img-fluid " >
+                        <p>Alterar Senha</p>
+                    </a>
+                </div>
+            </div>
+            <button class="btn btn-danger" onclick="logOut()">Sair</button>
+        </div>
+    </body>
+     
+</html>
