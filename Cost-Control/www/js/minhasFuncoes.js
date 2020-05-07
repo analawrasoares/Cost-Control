@@ -59,9 +59,10 @@ function logOut(){
 }
 
 function logIn(user){
-	const stringUser = JSON.stringify(user);
 
-	localStorage.user=stringUser;
+	localStorage.user = user.nome;
+	localStorage.id = user.id;
+	localStorage.senha = user.senha;
 	location.replace("index.html");
 }
 function isLogged(){
