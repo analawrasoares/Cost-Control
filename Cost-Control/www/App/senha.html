@@ -2,22 +2,23 @@
 
 <html lang="pt-br">
     <head>
-        <title>Cadastro De Usuário</title>
+        <title>Cadastro nova Senha</title>
                 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta charset="utf-8">
+        
+        <script type="text/javascript" src="../js/firebase/firebase-app.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-database.js"></script>
+        <script type="text/javascript" src="../js/firebase/firebase-init.js"></script>
 
         <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
-        <script type="text/javascript" src="../js/Notificacao.js"></script>
-        
-
-
-
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <script type="text/javascript" src="../js/bootstrap.js"></script>
+        <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+       
+    
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/animate.css">
         <link rel="stylesheet" type="text/css" href="../css/index.css">
 
@@ -38,35 +39,36 @@
     <body>
         <div class="container ">
             <legend class="mt-4">Mudar senha de Login</legend>
-            <form id="form-user">
+            <form id="myForm">
                 <div class="row">
-                         
+                      
                     <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="input-senha">Nova Senha:</label>
-                                <input required="required" type="password"  id="input-senha" class="form-control" placeholder="">
+                                <label for="pwd">Nova Senha:</label>
+                                <input name="pwd" required="required" type="password"  id="pwd" class="form-control" placeholder="">
                             </div>
                     
                     </div>
                     <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="input-senha">Confirmar Senha:</label>
-                                <input required="required" type="password"  id="input-senha" class="form-control" placeholder="">
+                                <label  for="cpwd">Confirmar Senha:</label>
+                                <input name="cpwd" required="required" type="password"  id="cpwd" class="form-control" placeholder="">
                             </div>
                     </div>
 
-
-
+                    <div id="message"></div>
+                    
                     <div class="col-sm-2">
-                     <a href="menu.html">   
-                        <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="button">Submit </button>     
-                        </a>
+                        
+                        <button id="EditSenha" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit" disabled >Submit </button>     
+                        
                     </div>
 
                 </div>
             </form>
         
-        </div>    
+        </div>  
+        <script type="text/javascript" src="../js/eventos-mudar-senha.js"></script>  
     </body>
     
 </html>
