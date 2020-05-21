@@ -111,6 +111,7 @@ function salvaUser(user,objEmail){
     if(user.id==""){
 
         //CONECTA COM O BANCO E CRIA UMA CHAVE PRIMÁRIA COM O MÉTODO PUSH E EM SEGUIDA SALVA USUÁRIO NO BANCO
+        user.id=firebase.database().ref("usuarios").push().key
         firebase.database().ref("usuarios").push().set(user)
 
         //CASO SALVE COM SUCESSO APARECE MENSAGEM DE SUCESSO E MANDA EMAIL PARA USUÁRIO 
@@ -153,6 +154,14 @@ function salvaUser(user,objEmail){
 
     
 }
+    $("#EditSenha").click(function(){  
+
+            cpwd = document.getElementById("cpwd").value
+           firebase.database().ref("usuarios/"+user.id).update(user)
+        
+
+    });
+
 function sleep(ms) {
     
     return new Promise(resolve => setTimeout(resolve, ms));
