@@ -17,16 +17,3 @@ $("#cpwd").keyup(function(){
     });
 });
 
-$("#EditSenha").click(function(){
- const fb = firebase.database().ref();
- 
-
-cpwd = document.getElementById("cpwd").value
-
-data = {cpwd}
-
-fb.child("usuarios/senha").update(data);
-
-
-
-});
