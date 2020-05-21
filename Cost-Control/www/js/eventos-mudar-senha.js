@@ -17,8 +17,8 @@ $(document).ready(function(){
 		if(isPasswordEqual()){
 			$("#btn-salvar-senha").append(" <span id='spinner' class='spinner-border spinner-border-sm'></span>");
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+
 			usuario.senha = $("#input-confirmar-senha").val();
 			localStorage.user = JSON.stringify(usuario);
 
@@ -62,7 +62,8 @@ function isPasswordEqual(){
 		return false;
 	}else{
 		return true;
+		
 	}
 
 }
->>>>>>> a46dbf31162735784afb07c4d6f2d9688c6a083c
+//>>>>>>> a46dbf31162735784afb07c4d6f2d9688c6a083c
