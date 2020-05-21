@@ -98,8 +98,8 @@ function criaLinha(user){
                     <td>${user.val().nome}</td>
                     <td>${user.val().cpf}</td>
                     <td>${user.val().email}</td>
-                    <td><a href="cadastroUsuario.html?id=${user.key}" class='btn btn-primary text-uppercase font-weight-bold'>Editar <span class='fas fa-edit'></span></a></td>
-                    <td><button id='btn-excluir' value='${user.key}' class='btn btn-danger text-uppercase font-weight-bold'>Excluir <span class='fas fa-trash'></span</button></td>
+                    <td><a href="cadastroUsuario.html?id=${user.key}" class='btn btn-primary text-uppercase font-weight-bold'> <span class='fas fa-edit'></span></a></td>
+                    <td><button id='btn-excluir' value='${user.key}' class='btn btn-danger text-uppercase font-weight-bold'> <span class='fas fa-trash'></span</button></td>
                 </tr>`;
 
     return linha;
