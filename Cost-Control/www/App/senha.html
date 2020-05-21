@@ -15,8 +15,10 @@
 
         <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.js"></script>
-        <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-       
+        <script type="text/javascript" src="../js/minhasFuncoes.js"></script>
+        <script type="text/javascript" src="../js/bootstrap-notify.min.js"></script>
+        <script type="text/javascript" src="../js/Notificacao.js"></script>
+        <script type="text/javascript" src="../js/eventos-mudar-senha.js"></script>
     
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/animate.css">
@@ -41,34 +43,50 @@
             <legend class="mt-4">Mudar senha de Login</legend>
             <form id="myForm">
                 <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Senha Atual:</label>
+                            <input type="password" required="" id="input-senha-atual" class="form-control">
+                        </div>
+                    </div>
                       
                     <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="pwd">Nova Senha:</label>
-                                <input name="pwd" required="required" type="password"  id="pwd" class="form-control" placeholder="">
-                            </div>
+                        <div class="form-group">
+                            <label for="input-nova-senha">Nova Senha:</label>
+                            <input required="required" type="password" id="input-nova-senha" class="form-control">
+                        </div>
                     
                     </div>
                     <div class="col-sm-4">
-                            <div class="form-group">
-                                <label  for="cpwd">Confirmar Senha:</label>
-                                <input name="cpwd" required="required" type="password"  id="cpwd" class="form-control" placeholder="">
-                            </div>
+                        <div class="form-group">
+                            <label  for="input-confirmar-senha">Confirmar Senha:</label>
+                            <input required="required" type="password" id="input-confirmar-senha" class="form-control" placeholder="">
+                        </div>
                     </div>
-
-                    <div id="message"></div>
+                    <div class="col-sm-4">
+                        <div id="message"></div>
+                    </div>
                     
                     <div class="col-sm-2">
                         
-                        <button id="EditSenha" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" type="submit" disabled >Submit </button>     
+                        <button id="btn-salvar-senha" class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
+                            Confirmar <span class="fas fa-check"></span> 
+                        </button>     
                         
+                    </div>
+
+                    <div class="col-sm-2 mt-3">
+                        <button type="button" onclick="location.replace('index.html')" class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">
+                            cancelar <span class="fas fa-times"></span> 
+                        </button>
                     </div>
 
                 </div>
             </form>
         
         </div>  
-        <script type="text/javascript" src="../js/eventos-mudar-senha.js"></script>  
+          
     </body>
     
 </html>
