@@ -60,13 +60,23 @@ function logOut(){
 
 function logIn(user){
 
-	localStorage.user = user.nome;
-	localStorage.id = user.id;
-	localStorage.senha = user.senha;
+	localStorage.user = JSON.stringify(user);
+	const usuario = JSON.parse(localStorage.user);
+	
+	
 	location.replace("index.html");
 }
 function isLogged(){
 	if(!localStorage.user){
 		location.replace("login.html")
 	};
+}
+
+function getUserFromLS(){
+	if(localStorage.user){
+		const user = JSON.parse(localStorage.user);
+		return user;
+
+	}
+	
 }
