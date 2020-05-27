@@ -246,7 +246,7 @@ function criaLinhaEntradas(registro){
 
     const linha =`<tr id=${registro.key}>
                     <td>${registro.val().descricao}</td>
-                    <td><button class='font-weight-bold disabled ${tipo}'>${registro.val().tipo}</button></td>
+                    <td><button class='font-weight-bold text-uppercase disabled ${tipo}'>${registro.val().tipo}</button></td>
                     <td>${registro.val().valor}</td>
                     <td><a href='cadastro.html?id=${registro.key}&ano=${registro.val().ano}&mes=${registro.val().mes}' class='btn btn-primary text-uppercase font-weight-bold '><span class='fas fa-edit'></span></a></td>
                     <td><button data-mes='${registro.val().mes}' data-ano='${registro.val().ano}' id='btn-excluir' value='${registro.key}' class='btn btn-danger btn-excluir text-uppercase font-weight-bold '><span class='fas fa-trash'></span</button></td>

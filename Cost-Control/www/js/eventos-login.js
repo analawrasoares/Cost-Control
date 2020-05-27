@@ -3,6 +3,7 @@ $(document).ready(function(){
 	log(localStorage);
 	
 	$("#input-cpf").mask("000.000.000-00");
+	$("#input-senha-cpf").mask("000.000.000-00");
 
 	$("#form-login").submit(async e=>{
 		e.preventDefault();
@@ -30,6 +31,43 @@ $(document).ready(function(){
 
 
 	});
+
+	$("#form-esqueci-senha").submit(async e=>{
+		e.preventDefault();
+		const cpf = $("#input-senha-cpf").unmask().val();
+		const email = $("#input-email").val();
+
+		//ADICIONA LOADING NO BOTÃO DE ENVIAR
+		$("#btn-enviar").append(" <span id='spinner' class='spinner-border spinner-border-sm'></span>");
+
+		const user = await rootRef.child("usuarios").orderByChild("cpf").equalTo(cpf).once("child_added");
+
+		//SE USER FOR NULL, USUÁRIO NÃO ENCONTRADO
+		if(!user.val()||user.val().email!=email){
+			Notificacao.erro("CPF ou email errados!");
+			$("#spinner").remove();
+			return false;
+		}
+
+		//OBJETO EMAIL COM AS INFORMAÇÕES PARA SEREM MANDADAS VIA EMAIL
+        const objEmail={
+                Host: "smtp.gmail.com",
+                Username : "costcontrolproject@gmail.com",
+                Password : "trabalhodojean123",
+                To : email,
+                From : "costcontrolproject@gmail.com",
+                Subject : "Recuperação Da Senha",
+                Body : "Sua senha é:" + user.val().senha 
+            };
+
+		Email.send(objEmail)
+		.then(()=>{
+			Notificacao.sucesso("Sua senha já foi enviada ao seu email! Caso não encontre, cheque sua caixa de spam.");
+			$("#spinner").remove();
+			$("#myModal").modal("toggle");
+		})            
+
+	})
 
 
 

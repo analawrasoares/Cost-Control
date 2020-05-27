@@ -48,7 +48,7 @@ function escondeLoading() {
 }
 
 function excluiTabela() {
-	$("#tabela-entradas tbody").empty();
+	$("table tbody").empty();
 }
 function mostraLoading(){
 	$("#img-loading").removeClass("d-none");

@@ -27,7 +27,7 @@
 
 <body>
 	<div class="container">
-		
+		<legend class="text-center mt-2" >Gráficos</legend>
 		<div id="anos">
 		    
   		</div>
@@ -39,7 +39,7 @@
 	
 <script type="text/javascript">
 	
-	firebase.database().ref("registros/1/").on("child_added",ano=>{
+	firebase.database().ref(`registros/${usuario.id}`).on("child_added",ano=>{
 		let meses="";
 		let cards=`<div class='card'>
 						

@@ -21,3 +21,10 @@
 	max-height: 300px;
 	overflow-y: scroll;
 }
+
+
+.tabela-historicos {
+	max-height: 450px;
+	overflow-y: scroll;
+}
+
