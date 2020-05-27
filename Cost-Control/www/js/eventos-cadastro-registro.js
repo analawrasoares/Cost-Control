@@ -1,11 +1,11 @@
 isLogged();
+let objAntigo;
 $(document).ready(async function(){
-    const log = console.log;
 
-    log(localStorage);
+    log(usuario);
     
     let url = window.location.search;
-    let objAntigo;
+    
 
     //FUNCÃO VERIFICA SE O USUÁRIO ESTAR EDITANDO UM REGISTRO OU CRICANDO UM NOVO
     //CASO ESTEJA EDITANDO, A FUNCÃO BUSCA O DADOS NO REGISTRO NO BANCO E SETA NO "objAntigo" E INPUTS
@@ -106,13 +106,13 @@ $(document).ready(async function(){
         if(obj.id==""){
 
             //CAMINHO QUE O REGISTRO VAI SER SALVI
-            const ref = firebase.database().ref(`registros/1/${ano}/${mes}`);
+            const ref = rootRef.child(`registros/${usuario.id}/${ano}/${mes}`);
 
             //ID GERADO PELO BANCO
             obj.id = ref.push().key;
 
             //SALVANDO NO BANCO NO CAMINHO DO REF + ID DA FUNCAO PUSH().KEY
-            ref.push().set(obj)
+            ref.child(obj.id).set(obj)
             .then(()=>{
                 Notificacao.sucesso("Registro salvo com sucesso")
                 limpaCampos();
@@ -141,7 +141,7 @@ $(document).ready(async function(){
             const id = $(this).val();
 
             //TODA VEZ QUE UM REGISTRO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
-            firebase.database().ref(`registros/1/${ano}/${mes}`).on("child_removed",snapshot=>{
+            rootRef.child(`registros/${usuario.id}/${ano}/${mes}`).on("child_removed",snapshot=>{
 
 
                 $("#"+snapshot.key).fadeOut(function(){
@@ -156,62 +156,65 @@ $(document).ready(async function(){
         
     });
 
-    
-    
-
-
-    
-
-    
-
 
 });
 function salvaRegistroEditado(obj,objAntigo){
-    if(obj.mes!=objAntigo.mes&&obj.ano!=objAntigo.ano){
+
+    //VERIFICO SE O USUÁRIO ALTEROU O MÊS E O ANO DO REGISTRO
+    if(obj.mes!=objAntigo.mes && obj.ano!=objAntigo.ano){
                 
         console.log("alterou o mês e o ano");
-        firebase.database().ref(`registros/1/${obj.ano}/${obj.mes}/${obj.id}`).update(obj)
+        rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`).update(obj)
+        .then(()=>rootRef.child(`registros/${usuario.id}/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove())
         .then(()=>{
-            return firebase.database().ref(`registros/1/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove();
+            Notificacao.sucesso("Registro atualizado com sucesso");
+            setTimeout(()=>location.reload('cadastro.html'),3000);
         })
-        .then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
         .catch(erro=>{
             Notificacao.erro(erro)
             console.log(erro);
         });
 
-    }else if(obj.mes!=objAntigo.mes&&obj.ano==objAntigo.ano){
-        console.log("aqui")
-        const valor1 =objAntigo.ano.toString();
-        const valor2 =objAntigo.mes.toString();
-        const valor3 =objAntigo.id.toString();
-        firebase.database().ref(`registros/1/${valor1}/${valor2}/${valor3}`).remove()
-        /*firebase.database().ref(`registros/1/${obj.ano}/${obj.mes}/${obj.id}`).update(obj)
+    }
+    //VERIFICO SE O USUÁRIO ALTEROU SÓ O MÊS DO REGISTRO
+    else if(obj.mes!=objAntigo.mes && obj.ano==objAntigo.ano){
+        console.log("alterou só o mês")
+        log(objAntigo)
+        rootRef.child(`registros/${usuario.id}/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove()
+        .then(()=>rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`).update(obj))
         .then(()=>{
-            console.log(objAntigo.ano,objAntigo.mes,objAntigo.id);
-            firebase.database().ref(`registros/1/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove()
+            Notificacao.sucesso("Registro atualizado com sucesso");
+            setTimeout(()=>{
+                location.replace("cadastro.html");
+
+            },3000)
         })
-        .then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
         .catch(erro=>{
             console.log(erro);
             Notificacao.erro(erro);
-        })*/
+        })
+    
 
+    //VERIFICO SE O USUÁRIO ALTEROU SÓ O ANO DO REGISTRO        
     }else if(obj.mes==objAntigo.mes&&obj.ano!=objAntigo.ano){
-        
-        firebase.database().ref(`registros/1/${obj.ano}/${obj.mes}/${obj.id}`).update(obj)
+        console.log("alterou só o ano")
+        rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`).update(obj)
+        .then(()=>rootRef.child(`registros/${usuario.id}/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove())
         .then(()=>{
-            return firebase.database().ref(`registros/1/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove();
+            Notificacao.sucesso("Registro atualizado com sucesso");
+            setTimeout(()=>location.replace('cadastro.html'),3000);
         })
-        .then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
         .catch(erro=>{
             console.log(erro);
             Notificacao.erro(erro);
         })
 
-    }else{
+    }
+    //USUÁRIO NÃO ALTEROU MÊS NEM ANO
+    else{
+        console.log("não alterou o mês nem o ano")
 
-        const ref = firebase.database().ref(`registros/1/${ano}/${mes}/${obj.id}`);
+        const ref = rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`);
         ref.update(obj)
         .then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
         .catch(erro=>Notificacao.erro(erro));
@@ -220,7 +223,7 @@ function salvaRegistroEditado(obj,objAntigo){
 
 }
 function buscaEntradas(mes,ano){
-    firebase.database().ref("registros/1/"+ano+"/"+mes).on("value",snapshot=>{
+    rootRef.child(`registros/${usuario.id}/${ano}/${mes}`).on("value",snapshot=>{
         
         escondeLoading();
         excluiTabela();
@@ -253,7 +256,7 @@ function criaLinhaEntradas(registro){
 
 
 function excluiRegistro(ano,mes,id){
-    firebase.database().ref("registros/1/"+ano+"/"+mes+"/"+id).remove()
+    rootRef.child(`registros/${usuario.id}/${ano}/${mes}/${id}`).remove()
     .then(()=>Notificacao.sucesso("Usuário excluido com sucesso!"))
     .catch(erro=>{
         console.log(erro);
@@ -269,7 +272,7 @@ function limpaCampos(){
 }
 
 async function editaRegistro(id,ano,mes){
-    const snapshot = await firebase.database().ref(`registros/1/${ano}/${mes}/${id}`).once("value");
+    const snapshot = await rootRef.child(`registros/${usuario.id}/${ano}/${mes}/${id}`).once("value");
     $(`option[value=${ano}]`).attr("selected","selected");
     $(`option[value=${mes}]`).attr("selected","selected");
     $('#input-valor').mask('000.000.000,00', {reverse: true});

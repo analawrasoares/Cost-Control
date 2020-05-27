@@ -1,5 +1,3 @@
-
-
 isLogged();
 $(document).ready(function(){
 	geraGraficoBarra(new Date().getFullYear());
@@ -62,7 +60,7 @@ async function geraGraficoBarra(ano){
 	const dados=[];
 	
 	//FAZ CONSULTA NO BANCO 	
-	const meses = await firebase.database().ref("registros/1/"+ano).once("value");
+	const meses = await firebase.database().ref(`registros/${usuario.id}/${ano}`).once("value");
 
 		//SE FOR NULL QUER DIZER QUE O USUÁRIO NÃO TEM REGISTRO NO BANCO
 		if(!meses.val()){

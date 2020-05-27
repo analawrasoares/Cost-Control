@@ -1,4 +1,7 @@
 const log = console.log;
+const usuario = getUserFromLS();
+
+log(usuario)
 
 function retornaMes(mes){
 	if(mes==0){
@@ -66,6 +69,7 @@ function logIn(user){
 	
 	location.replace("index.html");
 }
+
 function isLogged(){
 	if(!localStorage.user){
 		location.replace("login.html")
@@ -73,10 +77,12 @@ function isLogged(){
 }
 
 function getUserFromLS(){
+	let user = {};
 	if(localStorage.user){
-		const user = JSON.parse(localStorage.user);
-		return user;
+		user = JSON.parse(localStorage.user);
 
 	}
+	return user;
+
 	
 }

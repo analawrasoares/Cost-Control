@@ -1,6 +1,6 @@
 isLogged();
 $(document).ready(()=>{
-	log(localStorage);
+	
 	let url = window.location.search;
 	url = url.split("&"); 
 	const ano = url[0].split("=").pop();
@@ -67,7 +67,7 @@ async function geraGraficoPizza(ano,mes){
 	sliceSettings.slices.template.strokeOpacity = 1;
 	
 	//FAZ A CONSULTA NO BANCO	
-	const dadosAux = await firebase.database().ref(`registros/1/${ano}/${mes}`).once("value");
+	const dadosAux = await firebase.database().ref(`registros/${usuario.id}/${ano}/${mes}`).once("value");
 	
 	//SE A CONSULTA RETORNAR NULL, USUARIO NÃO TEM REGISTRO	
 	if(!dadosAux.val()){
