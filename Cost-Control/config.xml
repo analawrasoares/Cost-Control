@@ -2,7 +2,7 @@
 <widget id="com.ta.costcontrol" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Cost-Control</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplicativo de gerência de gastos
     </description>
     <author email="zagamendes@hotmail.com" >
         Izaac Alves Mendes
