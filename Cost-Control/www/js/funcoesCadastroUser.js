@@ -10,7 +10,7 @@ $(document).ready(function(){
         trazDadosUser(id);
     }
 
-    $("#input-cpf").mask("000.000.000-000");
+    $("#input-cpf").mask("000.000.000-00");
 
     //ADM CLICOU EM SALVAR
     $("#form-user").submit((evento)=>{
@@ -22,7 +22,7 @@ $(document).ready(function(){
             //OBJETO USUÁRIO PARA SER SALVO NO BANCO
             user={
                 nome:$("#input-nome").val(),
-                cpf:$("#input-cpf").val(),
+                cpf:$("#input-cpf").unmask().val(),
                 email:$("#input-email").val(),
                 id:$("#input-id").val()
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
             //OBJETO USUÁRIO PARA SER SALVO NO BANCO
             user={
                 nome:$("#input-nome").val(),
-                cpf:$("#input-cpf").val(),
+                cpf:$("#input-cpf").unmask().val(),
                 email:$("#input-email").val(),
                 id:$("#input-id").val(),
                 senha:Math.floor(Math.random() * 65536)  + 32768
