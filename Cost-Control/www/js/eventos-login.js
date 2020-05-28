@@ -1,6 +1,5 @@
-$(document).ready(function(){
+$(document).ready(async function(){
 	
-	log(localStorage);
 	
 	$("#input-cpf").mask("000.000.000-00");
 	$("#input-senha-cpf").mask("000.000.000-00");
@@ -15,7 +14,11 @@ $(document).ready(function(){
 		$("#btn-entrar").append("<span id='spinner' class='spinner-border spinner-border-sm'></span>");
 		
 		//FAZ CONSULTA NO BANCO VERIFICANDO CPF DIGITADO 
-		const user = await firebase.database().ref("usuarios").orderByChild("cpf").equalTo(cpf).once("child_added");
+		let user = await rootRef.child("usuarios").orderByChild("cpf").equalTo(cpf).once("value");
+		user.forEach(auxUser=>{
+			user = auxUser;
+		})
+		log(user.val())
 
 		//REMOVE O LOADING NO BOTÃO ENVIAR
 		$("#spinner").remove();
@@ -40,7 +43,10 @@ $(document).ready(function(){
 		//ADICIONA LOADING NO BOTÃO DE ENVIAR
 		$("#btn-enviar").append(" <span id='spinner' class='spinner-border spinner-border-sm'></span>");
 
-		const user = await rootRef.child("usuarios").orderByChild("cpf").equalTo(cpf).once("child_added");
+		let user = await rootRef.child("usuarios").orderByChild("cpf").equalTo(cpf).once("value");
+		user.forEach(auxUser=>{
+			user = auxUser;
+		})
 
 		//SE USER FOR NULL, USUÁRIO NÃO ENCONTRADO
 		if(!user.val()||user.val().email!=email){
