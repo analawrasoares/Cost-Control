@@ -1,5 +1,4 @@
 isLogged()
-log(usuario);
 $(document).ready(function(){
 	
 	$("#input-confirmar-senha").keyup(function(){
@@ -16,11 +15,11 @@ $(document).ready(function(){
 		if(isPasswordEqual()){
 			$("#btn-salvar-senha").append(" <span id='spinner' class='spinner-border spinner-border-sm'></span>");
 
-//<<<<<<< HEAD
+
 
 			usuario.senha = $("#input-confirmar-senha").val();
 			localStorage.user = JSON.stringify(usuario);
-
+			
 			rootRef.child(`usuarios/${usuario.id}`).update({senha:usuario.senha})
 			.then(()=>{
 				

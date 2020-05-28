@@ -66,12 +66,12 @@ $(document).ready(function(){
         
     });
     //TODA VEZ QUE UM NOVO USUÁRIO É ADICIONADO AO BANCO ESSA FUNÇÃO ADICIONA O MESMO NA TABELA
-    firebase.database().ref("usuarios").on("child_added",novoUser=>{
+    rootRef.child("usuarios").on("child_added",novoUser=>{
         $("#tabela-users tbody").append(criaLinha(novoUser));
     });
 
     //TODA VEZ QUE UM USUÁRIO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
-    firebase.database().ref("usuarios").on("child_removed",user=>{
+    rootRef.child("usuarios").on("child_removed",user=>{
         $("#"+user.key).fadeOut(()=>$("#"+user.key).remove());
     });
 
@@ -81,7 +81,7 @@ $(document).ready(function(){
 
 function trazDadosUser(id){
 
-    firebase.database().ref("usuarios/"+id).once("value",user=>{
+    rootRef.child("usuarios/"+id).once("value",user=>{
         console.log(user.val());
         $("#input-nome").val(user.val().nome);
         $("#input-cpf").val(user.val().cpf);
@@ -111,8 +111,8 @@ function salvaUser(user,objEmail){
     if(user.id==""){
 
         //CONECTA COM O BANCO E CRIA UMA CHAVE PRIMÁRIA COM O MÉTODO PUSH E EM SEGUIDA SALVA USUÁRIO NO BANCO
-        user.id=firebase.database().ref("usuarios").push().key
-        firebase.database().ref("usuarios").push().set(user)
+        user.id=rootRef.child("usuarios").push().key;
+        rootRef.child(`usuarios/${user.id}`).set(user)
 
         //CASO SALVE COM SUCESSO APARECE MENSAGEM DE SUCESSO E MANDA EMAIL PARA USUÁRIO 
         .then(()=>{
@@ -132,7 +132,7 @@ function salvaUser(user,objEmail){
     }else{
 
         //CONECTA COM O BANCO E ATUALIZA OS DADOS DO CLIENTE
-        firebase.database().ref("usuarios/"+user.id).update(user)
+        rootRef.child("usuarios/"+user.id).update(user)
 
         //CASO SALVE COM SUCESSO APARECE MENSAGEM DE SUCESSO E MANDA EMAIL PARA USUÁRIO 
         .then(()=>{
@@ -157,7 +157,7 @@ function salvaUser(user,objEmail){
     $("#EditSenha").click(function(){  
 
             cpwd = document.getElementById("cpwd").value
-           firebase.database().ref("usuarios/"+user.id).update(user)
+           rootRef.child("usuarios/"+user.id).update(user)
         
 
     });
@@ -169,7 +169,7 @@ function sleep(ms) {
 }
 
 function excluiuser(id){
-    firebase.database().ref("usuarios/"+id).remove()
+    rootRef.child("usuarios/"+id).remove()
     .then(()=>Notificacao.sucesso("Usuário excluido com sucesso!"))
     .catch(erro=>{
         console.log(erro);
