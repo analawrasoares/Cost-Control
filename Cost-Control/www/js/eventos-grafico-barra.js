@@ -14,17 +14,17 @@ async function geraGraficoBarra(ano){
 	//CRIA O GRÁFICO NA DIV/ID DO PRIMEIRO PARAMENTRO, SEGUNDO PARAMETRO DEFINE O TIPO DE GRÁFICO
 	const chart = am4core.create("chartdiv", am4charts.XYChart);
 
-	//DEFINININDO OS COMO AS BARRAS SERÃO CATEGORIZADAS NO EIXO X
-	const categoriaX = chart.xAxes.push(new am4charts.CategoryAxis());
+	//DEFINININDO OS COMO AS BARRAS SERÃO CATEGORIZADAS NO EIXO Y
+	const categoriaY = chart.yAxes.push(new am4charts.CategoryAxis());
 	
 	//DEFININDO POR QAUL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS
-	categoriaX.dataFields.category = "mes";
+	categoriaY.dataFields.category = "mes";
 
 	//TEXTO QUE APARECE EM BAIXO DO GRÁFICO
-	categoriaX.title.text = "Meses";
+	categoriaY.title.text = "Meses";
 	
 	//LINHA DO Y QUE DEFINE OS NÚMEROS E TEXTO QUE VÃO APAREER DO LADO ESQUERDO DO GRÁFICO 	
-	const valoresEntrada = chart.yAxes.push(new am4charts.ValueAxis());
+	const valoresEntrada = chart.xAxes.push(new am4charts.ValueAxis());
 
 	//TEXO QUE VAI APARECER NO LADO ESQUERDO DO GRÁFICO
 	valoresEntrada.title.text = "R$";
@@ -33,10 +33,10 @@ async function geraGraficoBarra(ano){
 	const entrada = chart.series.push(new am4charts.ColumnSeries());
 
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER VALOR NÚMERICO
-	entrada.dataFields.valueY = "entrada";
+	entrada.dataFields.valueX = "entrada";
 	
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER STRING
-	entrada.dataFields.categoryX = "mes";
+	entrada.dataFields.categoryY = "mes";
 
 	//DEFININDO A COR DA COLUNA DE ENTRADA - VERDE
 	entrada.columns.template.fill = am4core.color("#3CB371");
@@ -45,10 +45,10 @@ async function geraGraficoBarra(ano){
 	const saida = chart.series.push(new am4charts.ColumnSeries());
 
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER VALOR NÚMERICO
-	saida.dataFields.valueY = "saida";
+	saida.dataFields.valueX = "saida";
 	
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER STRING
-	saida.dataFields.categoryX = "mes";
+	saida.dataFields.categoryY = "mes";
 
 	//DEFININDO A COR DA COLUNA DE ENTRADA - VERDE
 	saida.columns.template.fill = am4core.color("#FF4500");

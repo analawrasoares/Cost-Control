@@ -3,7 +3,7 @@
     <name>Cost-Control</name>
     <description>
         Aplicativo de gerência de gastos
-        
+
     </description>
     <author email="zagamendes@hotmail.com" >
         Izaac Alves Mendes
@@ -24,9 +24,11 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <splash src="www/img/sale.png"/>
+        <preference name="SplashScreenBackgroundColor" value="#fff"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="SplashScreenBackgroundColor" value="#fff"/>
 </widget>

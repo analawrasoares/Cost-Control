@@ -1,10 +1,10 @@
 class Notificacao {
 
-   static sucesso  (){
+   static sucesso  (mensagem){
         $.notify({
             icon:"fas fa-check",
             title:"<strong>Sucesso!</strong>",
-            message:"Dados salvos com sucesso!"
+            message:mensagem
             },{
                 type:"success",
                 animate:{
