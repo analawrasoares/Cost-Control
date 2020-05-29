@@ -26,26 +26,26 @@
 </head>
 <style type="text/css">
 @media screen and (max-width: 375px){
-		.chartdiv{
-			height: 625px;
-			width: 980px;
-		}
-		#caixa-grafico{
-			width: 375px;
-			overflow-x: scroll;
-		}
+	.chartdiv{
+		height: 625px;
+		width: 375px;
 	}
-	@media screen and (min-width:667px){
-		.chartdiv{
-			height: 375px;
-			width: 860px;
-		}
-		#caixa-grafico{
-			width: 667px;
-
-		}	
+		
+}
+@media screen and (max-width:667px){
+	.chartdiv{
+		height: 375px;
+		width: 667;
 	}
-
+			
+}
+@media screen and (min-width:667px){
+	.chartdiv{
+		height: 375px;
+		width: 100%;
+	}
+		
+}
 
 </style>
 <body>
@@ -65,8 +65,10 @@
 		<img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
 
 		<!-- DIV PAI DA DIV QUE O GRÁFICO É GERADAO -->
-		<div id="caixa-grafico" >
-			<div class="chartdiv">
+		<div class="row">
+			<div class="col-12">
+				<div class="chartdiv">
+				</div>
 			</div>
 		</div> <!-- FECHA DIV PAI DA DIV DO GRÁFICO -->
 
