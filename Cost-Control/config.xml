@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ta.costcontrol" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Cost-Control</name>
+    <name>Cost Control</name>
     <description>
         Aplicativo de gerência de gastos
-
     </description>
-    <author email="zagamendes@hotmail.com" >
-        Izaac Alves Mendes
-    </author>
     <author email="analawra@outlook.com" >
         Ana Laura Soares
     </author>
+    <author email="zagamendes@hotmail.com" >
+        Izaac Alves Mendes
+    </author>
+    
     <icon src="www/img/sale.png" />
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -24,11 +24,11 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <splash src="www/img/sale.png"/>
-        <preference name="SplashScreenBackgroundColor" value="#fff"/>
+        <preference name="SplashScreenBackgroundColor" value="#ff0000"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <preference name="SplashScreenBackgroundColor" value="#fff"/>
+    <preference name="SplashScreenBackgroundColor" value="#ff0000"/>
 </widget>

@@ -40,38 +40,53 @@
     </style>
     <body>
         <div class="container ">
-            <legend class="mt-4">Mudar senha de Login</legend>
+            <legend class="mt-4 text-center">Alterar minha senha</legend>
             <form id="myForm">
                 <div class="row">
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <label>Senha Atual:</label>
-                            <input type="password" required="" id="input-senha-atual" class="form-control">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                                </div>
+                                <input type="password" required="" id="input-senha-atual" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">         
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <label for="input-nova-senha">Nova Senha:</label>
-                            <input required="required" type="password" id="input-nova-senha" class="form-control">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                                </div>
+                                <input required="required" type="password" id="input-nova-senha" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <label  for="input-confirmar-senha">Confirmar Senha:</label>
-                            <input required="required" type="password" id="input-confirmar-senha" class="form-control" placeholder="">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                                </div>
+                                <input required="required" type="password" id="input-confirmar-senha" class="form-control" placeholder="">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div id="message"></div>
                     </div>
                 </div>
                 <div class="row">       
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         
                         <button id="btn-salvar-senha" class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
                             Confirmar <span class="fas fa-check"></span> 
@@ -79,8 +94,8 @@
                         
                     </div>
                 </div>
-                <div class="row">        
-                    <div class="col-sm-4">
+                <div class="row mt-3">        
+                    <div class="col-sm-12">
                         <button type="button" onclick="location.replace('index.html')" class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">
                             cancelar <span class="fas fa-times"></span> 
                         </button>

@@ -8,7 +8,11 @@ $(document).ready(async function(){
 		e.preventDefault();
 
 		const cpf = $("#input-cpf").unmask().val();
-		const senha = $("#input-senha").val();
+		let senha = $("#input-senha").val();
+
+		senha = encripta(senha);
+		log(senha)
+
 
 		//ADICIONA LOADING NO BOTÃO DE ENVIAR
 		$("#btn-entrar").append("<span id='spinner' class='spinner-border spinner-border-sm'></span>");
@@ -63,7 +67,7 @@ $(document).ready(async function(){
                 To : email,
                 From : "costcontrolproject@gmail.com",
                 Subject : "Recuperação Da Senha",
-                Body : "Sua senha é:" + user.val().senha 
+                Body : "Sua senha é:" + descripta(user.val().senha) 
             };
 
 		Email.send(objEmail)

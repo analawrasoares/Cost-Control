@@ -1,5 +1,7 @@
 isLogged();
 $(document).ready(function(){
+	const url = location.search;
+	$(`option[value='${url.slice(4)}']`).attr("selected","selected");
 	geraGraficoBarra(new Date().getFullYear());
 	$("#select-ano-grafico").change(()=>{
 		mostraLoading();
@@ -13,6 +15,7 @@ async function geraGraficoBarra(ano){
 
 	//CRIA O GRÁFICO NA DIV/ID DO PRIMEIRO PARAMENTRO, SEGUNDO PARAMETRO DEFINE O TIPO DE GRÁFICO
 	const chart = am4core.create("chartdiv", am4charts.XYChart);
+	chart.cursor= new am4charts.XYCursor();
 
 	//DEFINININDO OS COMO AS BARRAS SERÃO CATEGORIZADAS NO EIXO Y
 	const categoriaY = chart.yAxes.push(new am4charts.CategoryAxis());
@@ -40,12 +43,18 @@ async function geraGraficoBarra(ano){
 
 	//DEFININDO A COR DA COLUNA DE ENTRADA - VERDE
 	entrada.columns.template.fill = am4core.color("#3CB371");
+
+	//DEFININDO O QUE SERÁ MOSTRADO QUANDO USUÁRIO PASSAR O MAUSE/CLICAR NA BARRA
+	entrada.columns.template.tooltipText ="Receita:{entrada}";
 	
 	//CRIANDO AS COLUNAS DE ENTRADA/ESQUERDA REFERENTE A CADA MÊS
 	const saida = chart.series.push(new am4charts.ColumnSeries());
 
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER VALOR NÚMERICO
 	saida.dataFields.valueX = "saida";
+
+	//DEFININDO O QUE SERÁ MOSTRADO QUANDO USUÁRIO PASSAR O MAUSE/CLICAR NA BARRA
+	saida.columns.template.tooltipText="Despesa:{saida}"
 	
 	//DEFININDO POR QUAL CHAVE O GRÁFICO IRÁ BUSCAR NO ARRAY DE OBJETOS - PRECISA SER STRING
 	saida.dataFields.categoryY = "mes";

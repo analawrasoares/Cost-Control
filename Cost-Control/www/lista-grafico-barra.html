@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Meus Gastos Mensais</title>
 	<meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -23,14 +23,20 @@
         <link rel="stylesheet" type="text/css" href="css/animate.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+
+        <style type="text/css">
+        	.btn-warning{
+        		color:white;
+        	}
+        </style>
 </head>
 
 <body>
 	<div class="container">
-		<legend class="text-center mt-2" >Gráficos</legend>
-		<div id="anos">
-		    
-  		</div>
+		<legend class="text-center mt-2" >Ano</legend>
+		<ul class="list-group">
+			
+		</ul>
 
   		<img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
 		
@@ -38,31 +44,18 @@
 </body>
 	
 <script type="text/javascript">
-	
-	firebase.database().ref(`registros/${usuario.id}`).on("child_added",ano=>{
-		let meses="";
-		let cards=`<div class='card'>
-						
-						<div class='card-header text-center' href='#${ano.key}' data-toggle='collapse'>
-							<a class='card-link font-weight-bold dropdown-toggle' href='#${ano.key}' data-toggle='collapse'>
-								${ano.key}	
-							</a>
-						</div>
-						<div id='${ano.key}' class='collapse' data-parent='#anos'>
-							<div class='card-body'>
-								<ul class='list-group'>`;
 
-									ano.forEach(mes=>{
-										meses+="<li class='list-group-item mb-2'><span style='color:#007bff;' class='font-weight-bold'>"+retornaMes(mes.key)+":</span><div class='d-inline-block float-right'><a class='btn btn-outline-info font-weight-bold'  href='graficoPizza.html?ano="+ano.key+"&mes="+mes.key+"'>Pizza <span class='fas fa-chart-pie'></span></a> <a class='btn btn-outline-warning'  href='graficoBarra.html?ano="+ano.key+"'>Barras <span class='fas fa-chart-bar'></span></a></div></li>"; 
-									});
-							cards+=meses;
-							cards+=`</ul>
-							</div>
-						</div>
-					</div>`;
+	firebase.database().ref(`registros/${usuario.id}`).on("child_added",ano=>{
+		
+		let li=`<li class='list-group-item'>
+					<a href='graficoBarra.html?id=${ano.key}'>
+						<button class='btn btn-outline-warning btn-block font-weight-bold text-uppercase'>${ano.key}: <span class='fas fa-chart-bar'></span>
+						</button>
+					</a>
+				</li>`;
 		escondeLoading();
 		$("#anos").addClass("animated fadeIn");					
-		$("#anos").append(cards);
+		$("ul").append(li);
 	});
 </script>
 
