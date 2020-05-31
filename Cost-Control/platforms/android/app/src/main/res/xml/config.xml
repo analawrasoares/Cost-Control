@@ -8,13 +8,12 @@
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <name>Cost-Control</name>
+    <name>Cost Control</name>
     <description>
         Aplicativo de gerência de gastos
-
     </description>
-    <author email="analawra@outlook.com">
-        Ana Laura Soares
+    <author email="zagamendes@hotmail.com">
+        Izaac Alves Mendes
     </author>
     <icon src="www/img/sale.png" />
     <content src="index.html" />
@@ -26,7 +25,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <splash src="www/img/sale.png" />
+    <splash src="www/img/sale 50x50.png" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="SplashScreenBackgroundColor" value="#fff" />
+    <preference name="SplashScreenDelay" value="3000" />
 </widget>

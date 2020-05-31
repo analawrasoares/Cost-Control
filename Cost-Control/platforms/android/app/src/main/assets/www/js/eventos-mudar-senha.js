@@ -8,6 +8,20 @@ $(document).ready(function(){
 
 	});
 
+	$("#input-senha-atual").blur(function(){
+
+		//FUNCÃO VERIFICA SE O USER DIGITOU A SENHA CORRETA E VERIFICA TBM SE OS DOIS INPUTS DA SENHA NOVA ESTÃ0 IGUAIS
+		isPasswordEqual();
+
+	});
+
+	$("#input-senha-atual").focus(function(){
+
+		//FUNCÃO VERIFICA SE O USER DIGITOU A SENHA CORRETA E VERIFICA TBM SE OS DOIS INPUTS DA SENHA NOVA ESTÃ0 IGUAIS
+		isPasswordEqual();
+
+	});
+
 	$("#myForm").submit(e=>{
 		e.preventDefault();
 		
@@ -17,7 +31,7 @@ $(document).ready(function(){
 
 
 
-			usuario.senha = $("#input-confirmar-senha").val();
+			usuario.senha = encripta($("#input-confirmar-senha").val());
 			localStorage.user = JSON.stringify(usuario);
 			
 			rootRef.child(`usuarios/${usuario.id}`).update({senha:usuario.senha})
@@ -53,7 +67,7 @@ function isPasswordEqual(){
 		$("#EditSenha").removeAttr("disabled");
 	}
 
-	if(usuario.senha!=$("#input-senha-atual").val()){
+	if(usuario.senha!=encripta($("#input-senha-atual").val())){
 		$("#message").html("*Senha atual estar errada*");
 		$("#message").css("color","red");
 			
@@ -64,4 +78,3 @@ function isPasswordEqual(){
 	}
 
 }
-//>>>>>>> a46dbf31162735784afb07c4d6f2d9688c6a083c

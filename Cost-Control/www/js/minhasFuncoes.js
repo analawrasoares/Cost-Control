@@ -140,3 +140,7 @@ function Chr(AsciiNum){
 	return String.fromCharCode(AsciiNum)
 
 }
+
+function sleep(mls){
+	return new Promise((resolve,reject)=>setTimeout(resolve,mls));
+}

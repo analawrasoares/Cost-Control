@@ -23,12 +23,12 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <splash src="www/img/sale.png"/>
-        <preference name="SplashScreenBackgroundColor" value="#ff0000"/>
+        <splash src="www/img/sale 50x50.png"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <preference name="SplashScreenBackgroundColor" value="#ff0000"/>
+
+    <preference name="SplashScreenDelay" value="3000" />
 </widget>
