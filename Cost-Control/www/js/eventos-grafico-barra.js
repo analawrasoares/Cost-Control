@@ -4,10 +4,10 @@ $(document).ready(function(){
 	adicionaAnosNoSelect();
 
 	const anoAtual = new Date().getFullYear();
-
+	geraGraficoBarra(anoAtual);
+	
 	$(`option[value='${anoAtual}']`).attr("selected","selected");
 
-	geraGraficoBarra(anoAtual);
 
 	$("#select-ano-grafico").change(function(){
 		mostraLoading();

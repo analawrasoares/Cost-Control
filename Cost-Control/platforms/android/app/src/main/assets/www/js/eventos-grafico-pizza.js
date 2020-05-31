@@ -1,25 +1,32 @@
 isLogged();
 $(document).ready(()=>{
 	
-	let url = window.location.search;
-	url = url.split("&"); 
-	const ano = url[0].split("=").pop();
-	const mes = url[1].split("=").pop();
+	adicionaAnosNoSelect()
+
+
+	let ano = new Date().getFullYear();
+	let mes = new Date().getMonth();
+
 	$(`option[value=${mes}]`).attr("selected","selected");
+	$(`option[value=${ano}]`).attr("selected","selected");
+
 	geraGraficoPizza(ano,mes);
 
-	$("#select-mes-grafico").change(()=>{
+	$("#select-mes-grafico").change(function(){
 		$("#legend-mes").text("");
 		mostraLoading();
-		geraGraficoPizza(ano,$("#select-mes-grafico").val())
+		geraGraficoPizza(ano,$(this).val());
+	});
+
+
+	$("#select-ano-grafico").change(function(){
+		$("#legend-mes").text("");
+		mostraLoading();
+		geraGraficoPizza($(this).val(),$("#select-mes-grafico").val());
 	});
 
 
 });
-
-
-
-
 
 
 async function geraGraficoPizza(ano,mes){
@@ -126,3 +133,8 @@ async function geraGraficoPizza(ano,mes){
 
 }
 
+function adicionaAnosNoSelect(){
+	rootRef.child("anos").on("child_added",ano=>{
+		$("#select-ano-grafico").append(`<option value='${ano.key}'>${ano.key}</option>`);
+	})
+}

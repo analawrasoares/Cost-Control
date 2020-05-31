@@ -7,10 +7,12 @@ $(document).ready(()=>{
 	let ano = new Date().getFullYear();
 	let mes = new Date().getMonth();
 
+	geraGraficoPizza(ano,mes);
+	
+	
 	$(`option[value=${mes}]`).attr("selected","selected");
 	$(`option[value=${ano}]`).attr("selected","selected");
 
-	geraGraficoPizza(ano,mes);
 
 	$("#select-mes-grafico").change(function(){
 		$("#legend-mes").text("");

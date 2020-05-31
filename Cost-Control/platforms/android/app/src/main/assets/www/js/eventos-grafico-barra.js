@@ -1,12 +1,20 @@
 isLogged();
 $(document).ready(function(){
-	const url = location.search;
-	$(`option[value='${url.slice(4)}']`).attr("selected","selected");
-	geraGraficoBarra(new Date().getFullYear());
-	$("#select-ano-grafico").change(()=>{
+	
+	adicionaAnosNoSelect();
+
+	const anoAtual = new Date().getFullYear();
+
+	$(`option[value='${anoAtual}']`).attr("selected","selected");
+
+	geraGraficoBarra(anoAtual);
+
+	$("#select-ano-grafico").change(function(){
 		mostraLoading();
-		geraGraficoBarra($("#select-ano-grafico").val());
+		geraGraficoBarra($(this).val());
 	});
+
+
 });
 
 async function geraGraficoBarra(ano){
@@ -135,4 +143,11 @@ async function geraGraficoBarra(ano){
 
 		}
 		
+}
+
+
+function adicionaAnosNoSelect(){
+	rootRef.child("anos").on("child_added",ano=>{
+		$("#select-ano-grafico").append(`<option value='${ano.key}'>${ano.key}</option>`);
+	})
 }
