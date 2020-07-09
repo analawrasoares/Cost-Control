@@ -1,7 +1,8 @@
 isLogged();
-$(document).ready(()=>{
+log(usuario);
+$(document).ready(function(){
 	
-	adicionaAnosNoSelect()
+	adicionaAnosNoSelect();
 
 
 	let ano = new Date().getFullYear();
@@ -17,7 +18,9 @@ $(document).ready(()=>{
 	$("#select-mes-grafico").change(function(){
 		$("#legend-mes").text("");
 		mostraLoading();
+		
 		geraGraficoPizza(ano,$(this).val());
+		
 	});
 
 
@@ -80,7 +83,7 @@ async function geraGraficoPizza(ano,mes){
 	
 	//FAZ A CONSULTA NO BANCO	
 	const dadosAux = await firebase.database().ref(`registros/${usuario.id}/${ano}/${mes}`).once("value");
-	
+
 	//SE A CONSULTA RETORNAR NULL, USUARIO NÃO TEM REGISTRO	
 	if(!dadosAux.val()){
 		escondeLoading();
@@ -90,7 +93,7 @@ async function geraGraficoPizza(ano,mes){
 	}else{
 		//PARA CADA REGISTRO NO MES
 		dadosAux.forEach(registro=>{
-
+			console.log(registro.val());
 			obj= {};
 			obj.entrada=registro.val().descricao;
 			obj.valor= registro.val().valor;
