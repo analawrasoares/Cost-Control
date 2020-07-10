@@ -144,3 +144,75 @@ function Chr(AsciiNum){
 function sleep(mls){
 	return new Promise((resolve,reject)=>setTimeout(resolve,mls));
 }
+
+function buscaEntradas(mes,ano){
+	rootRef.child(`registros/${usuario.id}/${ano}/${mes}`).on("value",snapshot=>{
+		
+		escondeLoading();
+		excluiTabela();
+		//ADICIONA UMA LINHA NA TABELA COM AS INFORMAÇOES DO NOVO REGISTRO
+		snapshot.forEach(registro=>{
+			$("table tbody").append(criaLinhaEntradas(registro))
+		});
+		
+			
+	});
+}
+function criaLinhaEntradas(registro){
+	let tipo="";
+	let classeSpan ="";
+	//DEFININDO SE O BOTÃO REFERENTE AO TIPO DO REGISTRO SERÁ VERDE OU VERMELHO
+	if(registro.val().tipo=="entrada"){
+		tipo="btn btn-success"
+		classeSpan="fas fa-plus";
+	}else{
+		tipo="btn btn-danger";
+		classeSpan="fas fa-minus";
+	}
+
+	const linha =`<tr id=${registro.key}>
+					<td>${registro.val().descricao}</td>
+					<td>${new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(registro.val().valor)}</td>
+					<td><button class='${tipo}'><span class='${classeSpan}'></span></button></td>
+					<td><a href='cadastro.html?id=${registro.key}&ano=${registro.val().ano}&mes=${registro.val().mes}' class='btn btn-outline-primary text-uppercase font-weight-bold '><span class='fas fa-edit'></span></a></td>
+					<td><button data-mes='${registro.val().mes}' data-ano='${registro.val().ano}' id='btn-excluir' value='${registro.key}' class='btn btn-outline-danger btn-excluir text-uppercase font-weight-bold '><span class='fas fa-trash'></span</button></td>
+				</tr>`;
+	return linha;
+}
+
+
+function excluiRegistro(ano,mes,id){
+	rootRef.child(`registros/${usuario.id}/${ano}/${mes}/${id}`).remove()
+	.then(()=>Notificacao.sucesso("Registro excluido com sucesso!"))
+	.catch(erro=>{
+		console.log(erro);
+		Notificacao.erro(erro);
+	})
+}
+
+
+
+
+function confirmCallback(botao){
+
+	//SE BOTÃO-1 == 1, USUÁRIO CLICOU EM CONFIRMAR
+	if(botao-1==1){
+
+		//TODA VEZ QUE UM REGISTRO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
+        rootRef.child(`registros/${usuario.id}/${auxAno}/${auxMes}`).on("child_removed",snapshot=>{
+
+            $("#"+auxId).fadeOut(function(){
+                $(this).remove();
+            });
+        });
+
+        excluiRegistro(auxAno,auxMes,auxId);
+	}
+	
+}
+
+function adicionaAnosNoSelect(){
+	rootRef.child("anos").on("child_added",ano=>{
+		$("#select-ano").append(`<option value='${ano.key}'>${ano.key}</option>`);
+	})
+}

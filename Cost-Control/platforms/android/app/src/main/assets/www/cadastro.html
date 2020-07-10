@@ -1,146 +1,157 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
-    <head>
-        <title>Cadastro De Registros</title>
-                
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta charset="utf-8">
+	<head>
+		<title>Cadastro De Registros</title>
+				
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+		<meta charset="utf-8">
 
-        <script type="text/javascript" src="js/firebase/firebase-app.js"></script>
-        <script type="text/javascript" src="js/firebase/firebase-database.js"></script>
-        <script type="text/javascript" src="js/firebase/firebase-init.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/firebase/firebase-app.js"></script>
+		<script type="text/javascript" src="js/firebase/firebase-database.js"></script>
+		<script type="text/javascript" src="js/firebase/firebase-init.js"></script>
 
-        <script type="text/javascript" src="js/jquery.js"></script>        
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
-        <script type="text/javascript" src="js/Notificacao.js"></script>
-        <script type="text/javascript" src="js/minhasFuncoes.js"></script>
-        <script type="text/javascript" src="js/eventos-cadastro-registro.js"></script>
-        <script type="text/javascript" src="js/jquery.mask.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>        
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
+		<script type="text/javascript" src="js/Notificacao.js"></script>
+		<script type="text/javascript" src="js/minhasFuncoes.js"></script>
+		<script type="text/javascript" src="js/eventos-cadastro-registro.js"></script>
+		<script type="text/javascript" src="js/jquery.mask.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/animate.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
 
-        
-        <link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    </head>
+	</head>
 
-    <style type="text/css">
-        body{
-            font-family: roboto;
-        }
-        .btn{
-            border-radius: 10px;
-        }
-    </style>
-    <body>
-       
-    
-        <div class="container">
+	<style type="text/css">
+		body{
+			font-family: roboto;
+		}
+		.btn{
+			border-radius: 10px;
+		}
+	</style>
+	<body>
+	   
+	
+		<div class="container">
 
-            <legend class="sm-2 text-center">Registrar Valores</legend>
-            
+			<legend class="sm-2 text-center">Registrar Valores</legend>
+			
 
-            <form id="form-entrada" >
-                <div class="row">
-                    <div class="col-12">
-                        <label for="input-mes">Mês:</label>
-                        <select required="" class="form-control" id="select-mes">
-                            <option data-mes="janeiro" value="0">Janeiro</option>
-                            <option data-mes="fevereiro" value="1">Fevereiro</option>
-                            <option data-mes="marco" value="2">Março</option>
-                            <option data-mes="abril" value="3">Abril</option>
-                            <option data-mes="maio" value="4">Maio</option>
-                            <option data-mes="junho" value="5">Junho</option>
-                            <option data-mes="julho" value="6">Julho</option>
-                            <option data-mes="agosto" value="7">Agosto</option>
-                            <option data-mes="setembro" value="8">Setembro</option>
-                            <option data-mes="outubro" value="9">Outubro</option>
-                            <option data-mes="novembro" value="10">Novembro</option>
-                            <option data-mes="dezembro" value="11">Dezembro</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-12">
-                        <label for="input-ano">Ano:</label>
-                        <select class="form-control" id="select-ano">
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            
-                                    
-                        </select>
-                            
-                    </div>
-            
-                    <div class="col-12">
-                            
-                        <label for="input-email">Valor:</label>
-                        <input required="required" type="tel"  id="input-valor" class="form-control" placeholder="Ex:300,00">
-                            
-                    </div>
-               </div>
+			<form id="form-entrada" >
+				<div class="row">
+					<div class="col-12">
+						<label for="input-mes">Mês:</label>
+						<div class="input-group input-group-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text fas fa-calendar-day"></span>
+							</div>
+							<select required="" class="form-control" id="select-mes">
+								<option data-mes="janeiro" value="0">Janeiro</option>
+								<option data-mes="fevereiro" value="1">Fevereiro</option>
+								<option data-mes="marco" value="2">Março</option>
+								<option data-mes="abril" value="3">Abril</option>
+								<option data-mes="maio" value="4">Maio</option>
+								<option data-mes="junho" value="5">Junho</option>
+								<option data-mes="julho" value="6">Julho</option>
+								<option data-mes="agosto" value="7">Agosto</option>
+								<option data-mes="setembro" value="8">Setembro</option>
+								<option data-mes="outubro" value="9">Outubro</option>
+								<option data-mes="novembro" value="10">Novembro</option>
+								<option data-mes="dezembro" value="11">Dezembro</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-12">
+						<label for="input-ano">Ano:</label>
+						<div class="input-group input-group-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text fas fa-calendar-alt"></span>
+							</div>
+							<select class="form-control" id="select-ano">
+										
+							</select>
+						</div>
+					</div>
+			
+					<div class="col-12">
+							
+						<label for="input-email">Valor:</label>
+						<div class="input-group input-group-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text fas fa-dollar-sign"></span>
+							</div>
+							<input required="required" type="tel"  id="input-valor" class="form-control" placeholder="Ex:300,00">
+						</div>
+							
+					</div>
+			   </div>
 
-                <div class="row">
+				<div class="row">
 
-                    <div class="col-12">
-                      
-                        <label for="descricao">Descrição:</label>
-                        <textarea class="form-control" required="" placeholder="Ex:Conta de luz" id="input-descricao" rows="3"></textarea>
-                      
-                    </div>
-                </div>
+					<div class="col-12">
+					  
+						<label for="descricao">Descrição:</label>
+						<textarea class="form-control" required="" placeholder="Ex:Conta de luz" id="input-descricao" rows="3"></textarea>
+					  
+					</div>
+				</div>
 
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <button type="button" id="btn-entrada" class="btn btn-outline-success font-weight-bold text-uppercase btn-block">Entrada <span class="fas fa-money-bill-alt"></span></button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" id="btn-saida" class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">Saída <span class="fas fa-money-bill-alt"></span></button>
-                    </div>
-                    <div class="col-12">
-                        <span class="text-danger" hidden="">Por favor selecione se o registro é uma entrada ou saída!</span>
-                    </div>
+				<div class="row mt-2">
+					<div class="col-6">
+						<button type="button" id="btn-entrada" class="btn btn-outline-success font-weight-bold text-uppercase btn-block">Entrada <span class="fas fa-money-bill-alt"></span></button>
+					</div>
+					<div class="col-6">
+						<button type="button" id="btn-saida" class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">Saída <span class="fas fa-money-bill-alt"></span></button>
+					</div>
+					<div class="col-12">
+						<span class="text-danger" hidden="">Por favor selecione se o registro é uma entrada ou saída!</span>
+					</div>
 
-                </div>
+				</div>
 
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <button id="btn-salvar" class="btn btn-outline-info btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
-                        <input type="hidden" name="" id="input-id" value="">
-                    </div>
+				<div class="row mt-2">
+					<div class="col-12">
+						<button id="btn-salvar" class="btn btn-outline-info btn-block font-weight-bold text-uppercase" type="submit">Salvar <span class="fas fa-save"></span></button>
+						<input type="hidden" name="" id="input-id" value="">
+					</div>
 
-                </div>
-            </form>
+				</div>
+			</form>
  
 
-            <div class="row tabela-entradas">
-                <table id="tabela-entradas" class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th>Descrição</th>
-                            <th>Valor</th>
-                            <th>Tipo</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
-                        </tr>
-                    </thead>
-                    <tbody class="">
-                        <img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
-                        
-                    </tbody>
-                </table>
-            </div>
-    </div>
+			<div class="row tabela-entradas">
+				<table id="tabela-entradas" class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th>Descrição</th>
+							<th>Valor</th>
+							<th>Tipo</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody class="">
+						<img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
+						
+					</tbody>
+				</table>
+			</div>
+	</div>
   </div>  
 </div>    
-    </body>
-    
+	</body>
+	
 </html>

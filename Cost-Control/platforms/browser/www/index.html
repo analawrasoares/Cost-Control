@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Menu</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+
+		<script type="text/javascript" src="js/jquery.js"></script>        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/minhasFuncoes.js"></script>
+		<script type="text/javascript" src="js/eventos-index.js"></script>
+		 
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		 
+		<style type="text/css">
+			body{
+				background: #2BBBAD;
+				
+			}
+			a{
+				color:white;
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+			legend{
+				color: white;
+			}
+
+		</style>
+		
+	</head>
+	<body>
+
+		<div class="container">
+			<legend class="text-center font-weight-bold mt-5">Menu</legend>
+
+				<div class="carousel slide" id="demo"  data-ride="carousel" data-wrap="false" data-interval="false" >
+
+				  <!-- Indicators -->
+				  <ul class="carousel-indicators">
+					<li data-target="#demo" data-slide-to="0" class="active"></li>
+					<li data-target="#demo" data-slide-to="1"></li>
+				  </ul>
+
+				  <!-- The slideshow -->
+					<div class="carousel-inner">
+
+						<div class="carousel-item active">
+							<div class="row animated fadeInUp">
+								<div class="col-5 mx-auto icones">
+									<a href="cadastro.html">
+										<img src="img/cadastro.png" class="img-fluid" >
+										<p>Cadastro</p>
+									</a>
+								</div>
+								
+								<div class="col-5 mx-auto icones">
+									<a href="historico.html">
+										<img src="img/historico.png" class="img-fluid" >
+										<p>Histórico</p>
+									</a>
+								</div>
+							</div>
+							<div class="row animated fadeInUp">
+								<div class="col-5 mx-auto icones">
+									<a href="graficos.html">
+										<img src="img/relatorio.png" class="img-fluid">
+										<p>Gráficos</p>
+									</a>
+								</div>
+								
+								<div class="col-5 mx-auto icones">
+									<a href="senha.html">
+										<img src="img/senha.png" class="img-fluid " >
+										<p>Alterar Senha</p>
+									</a>
+								</div>
+							</div>
+						  
+						</div>
+						<div class="carousel-item" style="height: 411px;">
+							<div class="row animated fadeInUp">
+								<div class="col-5 mx-auto text-center mt-3" onclick="logOut()">
+									<a href="#">
+										<img src="img/logout.png" class="img-fluid">
+										<p class="text-uppercase font-weight-bold">Sair</p>
+									</a>
+								</div>
+								<div class="col-5 mx-auto text-center">
+									
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					
+
+				  
+
+				</div>
+				
+
+			
+			
+		</div>
+	</body>
+	 
+</html>

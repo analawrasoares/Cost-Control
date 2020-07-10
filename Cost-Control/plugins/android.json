@@ -12,6 +12,9 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.ta.costcontrol"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.ta.costcontrol"
     }
   },
   "dependent_plugins": {}

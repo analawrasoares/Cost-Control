@@ -18,11 +18,16 @@ $(document).ready(function(){
         //NÃO DEIXA O FORMULÁRIO SER ENVIADO
 
         evento.preventDefault();
+        let cpf = $("#input-cpf").val();
+        
+        cpf = cpf.replace(/\./g,"").replace("-","");
+
         if(url!=""){
             //OBJETO USUÁRIO PARA SER SALVO NO BANCO
+            
             user={
                 nome:$("#input-nome").val(),
-                cpf:$("#input-cpf").unmask().val(),
+                cpf:cpf,
                 email:$("#input-email").val(),
                 id:$("#input-id").val()
 
@@ -30,14 +35,15 @@ $(document).ready(function(){
 
             salvaUser(user,null);
 
+
         }else{
             //OBJETO USUÁRIO PARA SER SALVO NO BANCO
             user={
                 nome:$("#input-nome").val(),
-                cpf:$("#input-cpf").unmask().val(),
+                cpf:cpf,
                 email:$("#input-email").val(),
                 id:$("#input-id").val(),
-                senha:Math.floor(Math.random() * 65536)  + 32768
+                senha:encripta(Math.floor(Math.random() * 65536)  + 32768)
             };
             
             //OBJETO EMAIL COM AS INFORMAÇÕES PARA SEREM MANDADAS VIA EMAIL
@@ -48,7 +54,7 @@ $(document).ready(function(){
                 To : user.email,
                 From : "costcontrolproject@gmail.com",
                 Subject : "Senha",
-                Body : "Sua senha é:" + user.senha 
+                Body : "Sua senha é:" + descripta(user.senha) 
             };
 
             salvaUser(user,objEmail);
@@ -117,6 +123,7 @@ function salvaUser(user,objEmail){
         //CASO SALVE COM SUCESSO APARECE MENSAGEM DE SUCESSO E MANDA EMAIL PARA USUÁRIO 
         .then(()=>{
             Notificacao.sucesso("Usuário cadastrado com sucesso!");
+            limparCampos();
             return Email.send(objEmail);
         })
 
@@ -175,4 +182,11 @@ function excluiuser(id){
         console.log(erro);
         Notificacao.erro(erro);
     })
+}
+
+function limparCampos(){
+    $("#input-nome").val("");
+    $("#input-email").val("");
+    $("#input-cpf").val("");
+    $("#input-id").val("");
 }

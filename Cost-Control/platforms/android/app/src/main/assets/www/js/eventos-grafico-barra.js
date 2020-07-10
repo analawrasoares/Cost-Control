@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$(`option[value='${anoAtual}']`).attr("selected","selected");
 
 
-	$("#select-ano-grafico").change(function(){
+	$("#select-ano").change(function(){
 		mostraLoading();
 		geraGraficoBarra($(this).val());
 	});
@@ -145,9 +145,3 @@ async function geraGraficoBarra(ano){
 		
 }
 
-
-function adicionaAnosNoSelect(){
-	rootRef.child("anos").on("child_added",ano=>{
-		$("#select-ano-grafico").append(`<option value='${ano.key}'>${ano.key}</option>`);
-	})
-}

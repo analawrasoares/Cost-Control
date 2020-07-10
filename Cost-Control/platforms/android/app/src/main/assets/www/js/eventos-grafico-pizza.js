@@ -24,7 +24,7 @@ $(document).ready(function(){
 	});
 
 
-	$("#select-ano-grafico").change(function(){
+	$("#select-ano").change(function(){
 		$("#legend-mes").text("");
 		mostraLoading();
 		geraGraficoPizza($(this).val(),$("#select-mes-grafico").val());
@@ -138,8 +138,3 @@ async function geraGraficoPizza(ano,mes){
 
 }
 
-function adicionaAnosNoSelect(){
-	rootRef.child("anos").on("child_added",ano=>{
-		$("#select-ano-grafico").append(`<option value='${ano.key}'>${ano.key}</option>`);
-	})
-}

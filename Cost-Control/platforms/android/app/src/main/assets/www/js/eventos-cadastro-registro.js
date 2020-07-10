@@ -1,8 +1,12 @@
 isLogged();
 let objAntigo;
+let auxAno="";
+let auxMes="";
+let auxId="";
+const botoes = ["Cancelar","Confirmar"];
+log(usuario);
 $(document).ready(async function(){
-
-	log(usuario);
+	adicionaAnosNoSelect();
 	
 	let url = window.location.search;
 	
@@ -83,10 +87,10 @@ $(document).ready(async function(){
 		const ano = $("#select-ano").val();
 		let valor = $("#input-valor").val();
 		const descricao = $("#input-descricao").val();
-
+		valor = valor.replace(/\./g,"").replace(",",".");
 		//TIRA OS PONTOS DA MASCARA E TROCA VÍRGULA POR PONTO E CONVERTE PARA UM FLOAT
-		valor = parseFloat(valor.replace(".","").replace(",","."));
-
+		valor = parseFloat(valor); 
+		log(valor);
 		//DEFINE O TIPO DO REGISTRO (ENTRADA OU SAÍDA)
 		$("#btn-entrada").hasClass("btn-entrada")?tipo="entrada":tipo="saida";
 
@@ -114,7 +118,7 @@ $(document).ready(async function(){
 			//SALVANDO NO BANCO NO CAMINHO DO REF + ID DA FUNCAO PUSH().KEY
 			ref.child(obj.id).set(obj)
 			.then(()=>{
-				Notificacao.sucesso("Registro salvo com sucesso")
+				Notificacao.sucesso("Registro salvo com sucesso");
 				limpaCampos();
 
 			})
@@ -123,6 +127,7 @@ $(document).ready(async function(){
 		}else{
 
 			salvaRegistroEditado(obj,objAntigo);
+
 			
 			
 
@@ -135,24 +140,11 @@ $(document).ready(async function(){
 	//EVENTO CASO O USUÁRIO CLIQUE EM ALGUM BOTÃO EXCLUIR 
 	$("#tabela-entradas tbody").on("click","#btn-excluir",function(){
 
-		if(confirm("Tem certeza que deseja remover esse registro?")){
-			const mes =$(this).data("mes");
-			const ano = $(this).data("ano");
-			const id = $(this).val();
-
-			//TODA VEZ QUE UM REGISTRO É EXCLUIDO DO BANCO ESSA FUNÇÃO O REMOVE DA TABELA
-			rootRef.child(`registros/${usuario.id}/${ano}/${mes}`).on("child_removed",snapshot=>{
-
-
-				$("#"+snapshot.key).fadeOut(function(){
-
-					$(this).remove();
-				});
-			});
-
-			excluiRegistro(ano,mes,id);    
-			
-		}
+		auxId = $(this).val(); 
+    	auxAno = $(this).data("ano");
+    	auxMes = $(this).data("mes");
+    	 
+    	navigator.notification.confirm("Tem certeza que deseja remover esse registro?", confirmCallback, "Atenção",botoes);
 		
 	});
 
@@ -168,7 +160,7 @@ function salvaRegistroEditado(obj,objAntigo){
 		.then(()=>rootRef.child(`registros/${usuario.id}/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove())
 		.then(()=>{
 			Notificacao.sucesso("Registro atualizado com sucesso");
-			setTimeout(()=>location.reload('cadastro.html'),3000);
+			setTimeout(()=>location.replace('cadastro.html'),1750);
 		})
 		.catch(erro=>{
 			Notificacao.erro(erro)
@@ -184,10 +176,7 @@ function salvaRegistroEditado(obj,objAntigo){
 		.then(()=>rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`).update(obj))
 		.then(()=>{
 			Notificacao.sucesso("Registro atualizado com sucesso");
-			setTimeout(()=>{
-				location.replace("cadastro.html");
-
-			},3000)
+			setTimeout(()=>location.replace('cadastro.html'),1750);
 		})
 		.catch(erro=>{
 			console.log(erro);
@@ -202,7 +191,7 @@ function salvaRegistroEditado(obj,objAntigo){
 		.then(()=>rootRef.child(`registros/${usuario.id}/${objAntigo.ano}/${objAntigo.mes}/${objAntigo.id}`).remove())
 		.then(()=>{
 			Notificacao.sucesso("Registro atualizado com sucesso");
-			setTimeout(()=>location.replace('cadastro.html'),3000);
+			setTimeout(()=>location.replace('cadastro.html'),1750);
 		})
 		.catch(erro=>{
 			console.log(erro);
@@ -216,56 +205,16 @@ function salvaRegistroEditado(obj,objAntigo){
 
 		const ref = rootRef.child(`registros/${usuario.id}/${obj.ano}/${obj.mes}/${obj.id}`);
 		ref.update(obj)
-		.then(()=>Notificacao.sucesso("Registro atualizado com sucesso"))
+		.then(()=>{
+			Notificacao.sucesso("Registro atualizado com sucesso")
+			setTimeout(()=>location.replace('cadastro.html'),1750);
+		})
 		.catch(erro=>Notificacao.erro(erro));
 				
 	}
 
 }
-function buscaEntradas(mes,ano){
-	rootRef.child(`registros/${usuario.id}/${ano}/${mes}`).on("value",snapshot=>{
-		
-		escondeLoading();
-		excluiTabela();
-		//ADICIONA UMA LINHA NA TABELA COM AS INFORMAÇOES DO NOVO REGISTRO
-		snapshot.forEach(registro=>{
-			$("#tabela-entradas tbody").append(criaLinhaEntradas(registro))
-		});
-		
-			
-	});
-}
-function criaLinhaEntradas(registro){
-	let tipo="";
-	let classeSpan ="";
-	//DEFININDO SE O BOTÃO REFERENTE AO TIPO DO REGISTRO SERÁ VERDE OU VERMELHO
-	if(registro.val().tipo=="entrada"){
-		tipo="btn btn-outline-success"
-		classeSpan="fas fa-plus";
-	}else{
-		tipo="btn btn-outline-danger";
-		classeSpan="fas fa-minus";
-	}
 
-	const linha =`<tr id=${registro.key}>
-					<td>${registro.val().descricao}</td>
-					<td>${registro.val().valor}</td>
-					<td><button class='${tipo}'><span class='${classeSpan}'></span></button></td>
-					<td><a href='cadastro.html?id=${registro.key}&ano=${registro.val().ano}&mes=${registro.val().mes}' class='btn btn-outline-primary text-uppercase font-weight-bold '><span class='fas fa-edit'></span></a></td>
-					<td><button data-mes='${registro.val().mes}' data-ano='${registro.val().ano}' id='btn-excluir' value='${registro.key}' class='btn btn-outline-danger btn-excluir text-uppercase font-weight-bold '><span class='fas fa-trash'></span</button></td>
-				</tr>`;
-	return linha;
-}
-
-
-function excluiRegistro(ano,mes,id){
-	rootRef.child(`registros/${usuario.id}/${ano}/${mes}/${id}`).remove()
-	.then(()=>Notificacao.sucesso("Usuário excluido com sucesso!"))
-	.catch(erro=>{
-		console.log(erro);
-		Notificacao.erro(erro);
-	})
-}
 
 
 function limpaCampos(){
@@ -279,7 +228,7 @@ async function editaRegistro(id,ano,mes){
 	$(`option[value=${ano}]`).attr("selected","selected");
 	$(`option[value=${mes}]`).attr("selected","selected");
 	$('#input-valor').mask('000.000.000,00', {reverse: true});
-	$(`#input-valor`).val(snapshot.val().valor);
+	$(`#input-valor`).val(snapshot.val().valor.toString().replace(".",","));
 	$("#input-id").val(id);
 	$("#input-descricao").val(snapshot.val().descricao);
 	if(snapshot.val().tipo=="entrada"){
@@ -302,7 +251,7 @@ async function isEditting(url){
 
 		//FUNCÃO QUE PREENCHE A TABELA COM OS GASTOS DO ANO E MÉS
 		buscaEntradas(mes,ano);
-
+		$('#input-valor').mask('000.000.000,00', {reverse: true});
 		//FUNCÃO QUE BUSCA NO BANCO O REGISTRO ESPECÍFICO E COLOCA VALORES NOS INPUT
 		objAntigo = await editaRegistro(id,ano,mes);
 
@@ -326,4 +275,10 @@ async function isEditting(url){
 		$('#input-valor').mask('000.000.000,00', {reverse: true});
 
 	}
+}
+
+function adicionaAnosNoSelect(){
+	rootRef.child("anos").on("child_added",ano=>{
+		$("#select-ano").append(`<option value='${ano.key}'>${ano.key}</option>`);
+	})
 }

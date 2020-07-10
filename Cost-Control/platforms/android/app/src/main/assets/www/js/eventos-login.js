@@ -7,11 +7,11 @@ $(document).ready(async function(){
 	$("#form-login").submit(async e=>{
 		e.preventDefault();
 
-		const cpf = $("#input-cpf").unmask().val();
+		let cpf = $("#input-cpf").val();
 		let senha = $("#input-senha").val();
+		cpf = cpf.replace(/\./g,"").replace("-","");
 
 		senha = encripta(senha);
-		log(senha)
 
 
 		//ADICIONA LOADING NO BOTÃO DE ENVIAR
