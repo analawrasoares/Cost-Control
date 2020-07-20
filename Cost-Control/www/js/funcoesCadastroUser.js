@@ -43,9 +43,9 @@ $(document).ready(function(){
                 cpf:cpf,
                 email:$("#input-email").val(),
                 id:$("#input-id").val(),
-                senha:encripta(Math.floor(Math.random() * 65536)  + 32768)
+                senha:Math.floor(Math.random() * 65536)  + 32768
             };
-            
+            user.senha = encripta(user.senha.toString());
             //OBJETO EMAIL COM AS INFORMAÇÕES PARA SEREM MANDADAS VIA EMAIL
             objEmail={
                 Host: "smtp.gmail.com",
