@@ -1,9 +1,9 @@
 isLogged();
 log(usuario);
-$(document).ready(function() {
+$(document).ready(function () {
 
-	$("#demo").on('slide.bs.carousel', function(){
-    	$(".row").removeClass("animated fadeInUp")
-  	});
+	$("#demo").on('slide.bs.carousel', function () {
+		$(".row").removeClass("animated fadeInUp")
+	});
 
 });

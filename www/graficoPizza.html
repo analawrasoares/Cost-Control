@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Gastos Mensais</title>
 	<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <script type="text/javascript" src="js/firebase/firebase-app.js"></script>
-    <script type="text/javascript" src="js/firebase/firebase-database.js"></script>
-    <script type="text/javascript" src="js/firebase/firebase-init.js"></script>
+	<script src="js/firebase/firebase-app.js"></script>
+	<script src="js/firebase/firebase-database.js"></script>
+	<script src="js/firebase/firebase-init.js"></script>
 
-    <script type="text/javascript" src="js/jquery.js"></script>        
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/minhasFuncoes.js"></script>
-    <script type="text/javascript" src="js/core.js"></script>
-	<script type="text/javascript" src="js/charts.js"></script>
-	<script type="text/javascript" src="js/animated.js"></script>
-    <script type="text/javascript" src="js/material.js"></script>
-    <script type="text/javascript" src="js/eventos-grafico-pizza.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/minhasFuncoes.js"></script>
+	<script src="js/eventos-grafico-pizza.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
-    <style type="text/css">
-    	@media screen and (min-width:667px){
-    		.chartdiv{
-    			height: 370px;
-    		}
-    	}
-    	@media screen and (max-width: 375px){
-    		.chartdiv{
-    			height: 450px;
-    		}
-    	}
-    	@media screen and (max-width: 667px){
-    		.chartdiv{
-    			height: 450px;
-    		}
-    	}
-    </style>
+	<!-- AMCHART -->
+	<script src="js/plugins/amchart/core.js"></script>
+	<script src="js/plugins/amchart/charts.js"></script>
+	<script src="js/plugins/amchart/animated.js"></script>
+	<script src="js/plugins/amchart/material.js"></script>
+
+	<!-- FONT AWESOME/BOOTSTRAP/ANIMATE/CUSTOM CSS -->
+	<link rel="stylesheet" type="text/css" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../node_modules/animate.css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<style type="text/css">
+		@media screen and (min-width:667px) {
+			.chartdiv {
+				height: 370px;
+			}
+		}
+
+		@media screen and (max-width: 375px) {
+			.chartdiv {
+				height: 450px;
+			}
+		}
+
+		@media screen and (max-width: 667px) {
+			.chartdiv {
+				height: 450px;
+			}
+		}
+	</style>
 </head>
+
 <body>
 	<div class="container">
 		<div class="row">
@@ -68,12 +75,14 @@
 				<div class="form-group">
 					<label>Ano:</label>
 					<select class="form-control" id="select-ano">
-						
+
 					</select>
 				</div>
 			</div>
 		</div>
-		<legend id="not-found" hidden=""><h4>Nenhum registro encontrado</h4></legend>
+		<legend id="not-found" hidden="">
+			<h4>Nenhum registro encontrado</h4>
+		</legend>
 		<img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
 
 
@@ -87,9 +96,10 @@
 
 </body>
 <script>
-	
-	
-	
+
+
+
 
 </script>
+
 </html>
