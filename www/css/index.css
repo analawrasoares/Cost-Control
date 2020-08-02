@@ -27,4 +27,9 @@
 	max-height: 450px;
 	overflow-y: scroll;
 }
-
+.logo{
+	max-width: 100px;
+}
+.back{
+	font-size: 2em;
+}

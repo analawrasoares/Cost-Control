@@ -14,11 +14,11 @@
 	<script src="js/firebase/firebase-database.js"></script>
 	<script src="js/firebase/firebase-init.js"></script>
 
-	<script src="../node_modules/jquery/dist/jquery.js"></script>
-	<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="../node_modules/jquery-mask-plugin/dist/jquery.mask.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/plugins/jquery-mask/jquery.mask.js"></script>
 
-	<script src="js/bootstrap-notify.min.js"></script>
+	<script src="js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
 	<script src="js/smtp.js"></script>
 
 	<script src="js/Notificacao.js"></script>
@@ -26,9 +26,9 @@
 	<script src="js/eventos-login.js"></script>
 
 	<!-- FONT AWESOME/BOOTSTRAP/ANIMATE/CUSTOM CSS -->
-	<link rel="stylesheet" type="text/css" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
-	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../node_modules/animate.css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap">
@@ -63,7 +63,7 @@
 						<label for="input-cpf">CPF:</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text fas fa-user"></span>
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input required="required" maxlength="16" type="tel" id="input-cpf" class="form-control"
 								placeholder="000.000.000-00">
@@ -74,7 +74,7 @@
 						<label for="input-senha">SENHA:</label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text fas fa-lock"></span>
+								<span class="input-group-text"><i class="fas fa-lock"></i></span>
 							</div>
 							<input required="required" type="password" id="input-senha" class="form-control"
 								placeholder="Sua senha">
@@ -86,14 +86,14 @@
 					</button>
 					<button id="btn-esqueci-senha" data-target="#myModal" data-toggle="modal"
 						class="btn btn-outline-primary btn-block font-weight-bold text-uppercase" type="button">
-						ESQUECI MINHA SENHA <span class="fas fa-question"></span>
+						ESQUECEU MINHA SENHA <span class="fas fa-question"></span>
 					</button>
 				</div>
 
 			</div>
 		</form>
 
-		<div class="modal fade" id="myModal" style="margin-top: 50%;">
+		<div class="modal fade" id="myModal">
 			<div class="modal-dialog">
 				<form id="form-esqueci-senha">
 					<div class="modal-content">
@@ -136,10 +136,12 @@
 
 						<!-- Modal footer -->
 						<div class="modal-footer">
-							<button id="btn-enviar" class="btn btn-primary">Enviar <span
-									class="fas fa-paper-plane"></span></button>
-							<button class="btn btn-outline-danger" type="button" data-dismiss="modal">Cancelar <span
-									class="fas fa-times"></span></button>
+							<button id="btn-enviar" class="btn btn-primary text-uppercase font-weight-bold">
+								<span class="fas fa-paper-plane"></span> Enviar 
+							</button>
+							<button class="btn btn-outline-danger text-uppercase font-weight-bold" type="button" data-dismiss="modal">
+								<span class="fas fa-times"></span> Cancelar 
+							</button>
 						</div>
 
 					</div>
