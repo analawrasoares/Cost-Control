@@ -54,30 +54,43 @@
                     <form>
                         <div class="form-group">
                             <label for="input-nome">Nome:</label>
-                            <input required="required" type="text" id="input-nome" class="form-control"
-                                placeholder="Ex:João Carlos">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input required="required" type="text" id="input-nome" class="form-control" placeholder="Ex:João Carlos">
+                            </div>
                         </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="input-nome">CPF:</label>
-                        <input required="required" type="tel" id="input-cpf" class="form-control"
-                            placeholder="Ex:000.000.000-00">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                            </div>
+                            <input required="required" type="tel" id="input-cpf" class="form-control" placeholder="Ex:000.000.000-00">
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="input-email">Email:</label>
-                        <input required="required" type="email" id="input-email" class="form-control"
-                            placeholder="Ex:seuemail@exemplo.com">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input required="required" type="email" id="input-email" class="form-control" placeholder="Ex:seuemail@exemplo.com">
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-sm-2">
                     <label class="text-white">Salvar</label>
-                    <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase"
-                        style="padding: 6px;">Salvar <span class="fas fa-save"></span></button>
+                    <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" style="padding: 6px;">
+                        <span class="fas fa-check"></span> Salvar 
+                    </button>
                     <input type="hidden" name="" id="input-id" value="">
                 </div>
 
@@ -85,7 +98,7 @@
                     <label class="text-white">Novo</label>
                     <a href="cadastrousuario.html">
                         <button type="button" class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
-                            Novo <span class="fas fa-plus"></span>
+                            <span class="fas fa-plus"></span> Novo 
                         </button>
                     </a>
                 </div>
