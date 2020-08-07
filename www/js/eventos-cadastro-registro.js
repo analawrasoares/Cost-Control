@@ -150,6 +150,7 @@ $(document).ready(async function () {
 
 
 });
+
 function salvaRegistroEditado(obj, objAntigo) {
 
 	//VERIFICO SE O USUÁRIO ALTEROU O MÊS E O ANO DO REGISTRO

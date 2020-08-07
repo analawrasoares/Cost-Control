@@ -71,6 +71,7 @@ $(document).ready(function () {
         }
 
     });
+    
     //TODA VEZ QUE UM NOVO USUÁRIO É ADICIONADO AO BANCO ESSA FUNÇÃO ADICIONA O MESMO NA TABELA
     rootRef.child("usuarios").on("child_added", novoUser => {
         $("#tabela-users tbody").append(criaLinha(novoUser));

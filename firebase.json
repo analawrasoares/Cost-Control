@@ -1,10 +1,23 @@
 {
   "hosting": {
+    "cleanUrls":true,
     "public": "www",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects":[
+      {
+        "source":"/",
+        "destination":"cadastroUsuario",
+        "type": 301
+      },
+      {
+        "source":"/login",
+        "destination":"cadastroUsuario",
+        "type": 301
+      }
     ]
   }
 }
