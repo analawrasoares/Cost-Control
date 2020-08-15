@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Cadastro De Usuário</title>
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta charset="utf-8">
+
+    <link rel="icon" href="img/sale.png" type="image/x-icon">
+
+    <script src="js/firebase/firebase-app.js"></script>
+    <script src="js/firebase/firebase-database.js"></script>
+    <script src="js/firebase/firebase-init.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/jquery-mask/jquery.mask.js"></script>
+
+    <script src="js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="js/Notificacao.js"></script>
+    <script src="js/minhasFuncoes.js"></script>
+    <script src="js/funcoesCadastroUser.js"></script>
+    <script src="js/smtp.js"></script>
+
+    <!-- FONT AWESOME/BOOTSTRAP/ANIMATE/CUSTOM CSS -->
+    <link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap" rel="stylesheet">
+
+</head>
+
+<style type="text/css">
+    body {
+        font-family: roboto;
+    }
+
+    .btn {
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <legend class="mt-4">Registro De Usuários</legend>
+        <form id="form-user">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="input-nome">Nome:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input required="required" type="text" id="input-nome" class="form-control" placeholder="Ex:João Carlos">
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="input-nome">CPF:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                            </div>
+                            <input required="required" type="tel" id="input-cpf" class="form-control" placeholder="Ex:000.000.000-00">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="input-email">Email:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input required="required" type="email" id="input-email" class="form-control" placeholder="Ex:seuemail@exemplo.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="text-white">Salvar</label>
+                    <button id="btn-salvar" class="btn btn-outline-success btn-block font-weight-bold text-uppercase" style="padding: 6px;">
+                        <span class="fas fa-check"></span> Salvar 
+                    </button>
+                    <input type="hidden" name="" id="input-id" value="">
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="text-white">Novo</label>
+                    <a href="cadastrousuario.html">
+                        <button type="button" class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
+                            <span class="fas fa-plus"></span> Novo 
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <table id="tabela-users" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email:</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>

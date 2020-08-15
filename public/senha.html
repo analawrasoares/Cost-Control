@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Cadastro nova Senha</title>
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="shortcut icon" href="img/sale.png" type="image/x-icon">
+
+    <script src="js/firebase/firebase-app.js"></script>
+    <script src="js/firebase/firebase-database.js"></script>
+    <script src="js/firebase/firebase-init.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/minhasFuncoes.js"></script>
+    <script src="js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="js/Notificacao.js"></script>
+    <script src="js/eventos-mudar-senha.js"></script>
+
+    <!-- FONT AWESOME/BOOTSTRAP/ANIMATE/CUSTOM CSS -->
+    <link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500i&display=swap">
+
+</head>
+
+<style type="text/css">
+    body {
+        font-family: roboto;
+    }
+
+    .btn {
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <nav class="navbar">
+		<img src="img/sale.png" class="img-responsive logo d-block mx-auto">
+	</nav>
+    <div class="container">
+        <legend class="mt-4 text-center">Alterar minha senha</legend>
+        <form id="myForm">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Senha Atual:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                            </div>
+                            <input type="password" required="" id="input-senha-atual" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="input-nova-senha">Nova Senha:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                            </div>
+                            <input required="required" type="password" id="input-nova-senha" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="input-confirmar-senha">Confirmar Senha:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                            </div>
+                            <input required="required" type="password" id="input-confirmar-senha" class="form-control"
+                                placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div id="message"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <button id="btn-salvar-senha"
+                        class="btn btn-outline-primary btn-block font-weight-bold text-uppercase">
+                        <span class="fas fa-check"></span> Confirmar 
+                    </button>
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <button type="button" onclick="location.replace('index.html')"
+                        class="btn btn-outline-danger font-weight-bold text-uppercase btn-block">
+                        <span class="fas fa-times"></span> cancelar 
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

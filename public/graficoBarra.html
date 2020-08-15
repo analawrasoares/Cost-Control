@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Gastos Anuais</title>
+	<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="img/sale.png" type="image/x-icon">
+
+	<script src="js/firebase/firebase-app.js"></script>
+	<script src="js/firebase/firebase-database.js"></script>
+	<script src="js/firebase/firebase-init.js"></script>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/minhasFuncoes.js"></script>
+	<script src="js/eventos-grafico-barra.js"></script>
+
+	<!-- AMCHART -->
+	<script src="js/plugins/amchart/core.js"></script>
+	<script src="js/plugins/amchart/charts.js"></script>
+	<script src="js/plugins/amchart/animated.js"></script>
+	<script src="js/plugins/amchart/material.js"></script>
+
+	<!-- FONT AWESOME/BOOTSTRAP/ANIMATE/CUSTOM CSS -->
+	<link rel="stylesheet" type="text/css" href="css/fa/css/all.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<style type="text/css">
+	@media screen and (max-width: 375px) {
+		.chartdiv {
+			height: 625px;
+			width: 375px;
+		}
+
+	}
+
+	@media screen and (max-width:667px) {
+		.chartdiv {
+			height: 375px;
+			width: 667;
+		}
+
+	}
+
+	@media screen and (min-width:667px) {
+		.chartdiv {
+			height: 375px;
+			width: 100%;
+		}
+
+	}
+</style>
+
+<body>
+	<nav class="navbar">
+		<img src="img/sale.png" class="img-responsive logo d-block mx-auto">
+	</nav>
+
+	<div class="container">
+		<div class="form-group">
+			<label>Ano:</label>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text"><i class="fas fa-calendar"></i></div>
+				</div>
+				<select class="form-control" id="select-ano">
+				</select>
+			</div>
+		</div>
+		<div id="not-found" hidden="">
+			<h4 class="text-center">Nenhum registro encontrado</h4>
+		</div>
+		<legend>
+			<h4 class="text-center">Total de gastos por mes durante o ano</h4>
+		</legend>
+		<img src="img/loading.gif" class="img-fluid mx-auto d-block" id="img-loading">
+
+		<!-- DIV PAI DA DIV QUE O GRÁFICO É GERADAO -->
+		<div class="row">
+			<div class="col-12">
+				<div class="chartdiv">
+				</div>
+			</div>
+		</div> <!-- FECHA DIV PAI DA DIV DO GRÁFICO -->
+
+
+
+
+	</div>
+
+</body>
+<script>
+
+
+
+
+
+
+
+</script>
+
+</html>
