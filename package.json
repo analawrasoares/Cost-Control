@@ -13,7 +13,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@amcharts/amcharts4": "^4.9.34",
+    "@amcharts/amcharts4": "^4.10.35",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.0",
